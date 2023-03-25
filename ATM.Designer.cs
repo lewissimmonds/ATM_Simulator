@@ -86,6 +86,7 @@
             pinTxtBox.Name = "pinTxtBox";
             pinTxtBox.Size = new Size(298, 23);
             pinTxtBox.TabIndex = 2;
+            pinTxtBox.KeyPress += pinTxtBox_KeyPress;
             // 
             // accNumTxtBox
             // 
@@ -93,6 +94,7 @@
             accNumTxtBox.Name = "accNumTxtBox";
             accNumTxtBox.Size = new Size(298, 23);
             accNumTxtBox.TabIndex = 1;
+            accNumTxtBox.KeyPress += accNumTxtBox_KeyPress;
             // 
             // loginPanelLabel
             // 
