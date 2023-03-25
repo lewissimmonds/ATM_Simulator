@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace ATM_Simulator
 {
-    internal class Account
+    public class Account
     {
         public int accountNum { get; set; }
         public int pin { get; set; }
+        public int balance { get; set; }
 
-        public Account(int accNum, int pinNum)
+        public Account(int accNum, int pinNum, int bal)
         {
             accountNum = accNum;
             pin = pinNum;
+            balance = bal;
         }
     }
 }

@@ -1,7 +1,12 @@
+using System.Runtime.InteropServices;
+
 namespace ATM_Simulator
 {
     public partial class ATM : Form
     {
+        //Creates a list of accounts
+        public List<Account> accounts = new List<Account>();
+
         public ATM()
         {
             InitializeComponent();
@@ -46,5 +51,38 @@ namespace ATM_Simulator
         }
 
 
+        //Method to create an account
+        private bool CreateAccount(int accountNumber, int pinNum, int startingBalance)
+        {
+            //Checks if this account number already exists, if so, account cannot be created
+            if(AccountExists(accountNumber)) {
+                return false;
+            }
+            else
+            {
+                //Account num does not already exist so it is create
+                Account newAccount = new Account(accountNumber, pinNum, startingBalance);
+                accounts.Add(newAccount);
+                return true;
+            }
+        }
+
+
+        //Method to check if an account exists
+        private bool AccountExists(int enteredNum)
+        {   
+            //Loop through each account in the list of accounts
+            foreach (Account account in accounts)
+            {
+                //If the account number matches, return true
+                if (account.accountNum == enteredNum)
+                {
+                    return true;
+                }
+            }
+
+            //If no account with the given account number was found, return false
+            return false;
+        }
     }
 }
