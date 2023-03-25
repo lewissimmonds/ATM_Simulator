@@ -87,40 +87,57 @@ namespace ATM_Simulator
             }
         }
 
-        // method to check if the login details are valid when the login button is clicked
-        private void loginButton_Click(object sender, EventArgs e)
-        {
-
-            // get the contents of the account number and pin number fields, 
-            // and convert to ints
-            int accntNum = Convert.ToInt32(accNumTxtBox.Text);
-            int pinNum = Convert.ToInt32(pinTxtBox.Text);
-
-            // if account details are valid
-            if (CheckPin(accntNum, pinNum))
-            {
-
-                // hide the login screen
-                loginPanel.Visible = false;
-            }
-        }
-
 
         //Method to create an account
         private bool CreateAccount(int accountNumber, int pinNum, int startingBalance)
         {
-            //Checks if this account number already exists, if so, account cannot be created
-            if(AccountExists(accountNumber)) {
-                return false;
+            //Checks if length of pin and account num are valid
+            if (LengthCheck(accountNumber, pinNum))
+            {
+                //Checks if this account number already exists, if so, account cannot be created
+                if (AccountExists(accountNumber))
+                {
+                    Debug.WriteLine("ERROR: Account with entered number already exists");
+                    return false;
+                }
+                else
+                {
+                    //Account num does not already exist so it is create
+                    Account newAccount = new Account(accountNumber, pinNum, startingBalance);
+                    accounts.Add(newAccount);
+                    return true;
+                }
             }
             else
             {
-                //Account num does not already exist so it is create
-                Account newAccount = new Account(accountNumber, pinNum, startingBalance);
-                accounts.Add(newAccount);
-                return true;
+                return false;
+            }
+
+
+        }
+
+        //Method to check pin is 4 digits long and account is 6 digits long
+        private bool LengthCheck(int accNum, int pin)
+        {
+            if (accNum.ToString().Length == 6)
+            {
+                if (pin.ToString().Length == 4)
+                {
+                    return true;
+                }
+                else
+                {
+                    Debug.WriteLine("ERROR: Pin number not 4 digits");
+                    return false;
+                }
+            }
+            else
+            {
+                Debug.WriteLine("ERROR: Account number not 6 digits");
+                return false;
             }
         }
+
 
 
         //Method to check if an account exists
@@ -174,6 +191,5 @@ namespace ATM_Simulator
             Debug.WriteLine("ERROR: No accounts exist");
             return false;
         }
-
     }
 }
