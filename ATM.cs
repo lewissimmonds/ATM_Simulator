@@ -110,8 +110,7 @@ namespace ATM_Simulator
         private bool CreateAccount(int accountNumber, int pinNum, int startingBalance)
         {
             //Checks if this account number already exists, if so, account cannot be created
-            if (AccountExists(accountNumber))
-            {
+            if(AccountExists(accountNumber)) {
                 return false;
             }
             else
@@ -135,6 +134,10 @@ namespace ATM_Simulator
                 {
                     return true;
                 }
+                else
+                {
+                    return false;
+                }
             }
 
             //If no account with the given account number was found, return false
@@ -157,11 +160,18 @@ namespace ATM_Simulator
                     else
                     {
                         //Pin is not valid as account pin does not match the entered pin
+                        Debug.WriteLine("ERROR: Pin does not match");
                         return false;
                     }
                 }
+                else
+                {
+                    Debug.WriteLine("ERROR:Account number not valid");
+                    return false;
+                }
             }
             //Only come here if there is not accounts that exist at all
+            Debug.WriteLine("ERROR: No accounts exist");
             return false;
         }
 
