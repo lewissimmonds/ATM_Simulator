@@ -87,6 +87,24 @@ namespace ATM_Simulator
             }
         }
 
+        // method to check if the login details are valid when the login button is clicked
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+
+            // get the contents of the account number and pin number fields, 
+            // and convert to ints
+            int accntNum = Convert.ToInt32(accNumTxtBox.Text);
+            int pinNum = Convert.ToInt32(pinTxtBox.Text);
+
+            // if account details are valid
+            if (CheckPin(accntNum, pinNum))
+            {
+
+                // hide the login screen
+                loginPanel.Visible = false;
+            }
+        }
+
 
         //Method to create an account
         private bool CreateAccount(int accountNumber, int pinNum, int startingBalance)
