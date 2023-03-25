@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             loginPanel = new Panel();
+            loginButton = new Button();
             enterInfoLabel = new Label();
             pinLabel = new Label();
             accNumLabel = new Label();
@@ -40,6 +41,7 @@
             // 
             // loginPanel
             // 
+            loginPanel.Controls.Add(loginButton);
             loginPanel.Controls.Add(enterInfoLabel);
             loginPanel.Controls.Add(pinLabel);
             loginPanel.Controls.Add(accNumLabel);
@@ -52,11 +54,22 @@
             loginPanel.Size = new Size(800, 450);
             loginPanel.TabIndex = 0;
             // 
+            // loginButton
+            // 
+            loginButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            loginButton.Location = new Point(332, 367);
+            loginButton.Name = "loginButton";
+            loginButton.Size = new Size(119, 40);
+            loginButton.TabIndex = 6;
+            loginButton.Text = "LOGIN";
+            loginButton.UseVisualStyleBackColor = true;
+            loginButton.Click += loginButton_Click;
+            // 
             // enterInfoLabel
             // 
             enterInfoLabel.AutoSize = true;
             enterInfoLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            enterInfoLabel.Location = new Point(318, 176);
+            enterInfoLabel.Location = new Point(318, 155);
             enterInfoLabel.Name = "enterInfoLabel";
             enterInfoLabel.Size = new Size(133, 21);
             enterInfoLabel.TabIndex = 5;
@@ -65,7 +78,7 @@
             // pinLabel
             // 
             pinLabel.AutoSize = true;
-            pinLabel.Location = new Point(243, 334);
+            pinLabel.Location = new Point(238, 291);
             pinLabel.Name = "pinLabel";
             pinLabel.Size = new Size(27, 15);
             pinLabel.TabIndex = 4;
@@ -74,7 +87,7 @@
             // accNumLabel
             // 
             accNumLabel.AutoSize = true;
-            accNumLabel.Location = new Point(168, 272);
+            accNumLabel.Location = new Point(163, 229);
             accNumLabel.Name = "accNumLabel";
             accNumLabel.Size = new Size(102, 15);
             accNumLabel.TabIndex = 3;
@@ -82,7 +95,7 @@
             // 
             // pinTxtBox
             // 
-            pinTxtBox.Location = new Point(288, 331);
+            pinTxtBox.Location = new Point(283, 288);
             pinTxtBox.Name = "pinTxtBox";
             pinTxtBox.Size = new Size(298, 23);
             pinTxtBox.TabIndex = 2;
@@ -90,7 +103,7 @@
             // 
             // accNumTxtBox
             // 
-            accNumTxtBox.Location = new Point(288, 269);
+            accNumTxtBox.Location = new Point(283, 226);
             accNumTxtBox.Name = "accNumTxtBox";
             accNumTxtBox.Size = new Size(298, 23);
             accNumTxtBox.TabIndex = 1;
@@ -107,13 +120,13 @@
             loginPanelLabel.TabIndex = 0;
             loginPanelLabel.Text = "ATM";
             // 
-            // Form1
+            // ATM
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(loginPanel);
-            Name = "Form1";
+            Name = "ATM";
             Text = "Form1";
             loginPanel.ResumeLayout(false);
             loginPanel.PerformLayout();
@@ -129,5 +142,6 @@
         private Label accNumLabel;
         private TextBox pinTxtBox;
         private TextBox accNumTxtBox;
+        private Button loginButton;
     }
 }
