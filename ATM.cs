@@ -7,21 +7,21 @@ namespace ATM_Simulator
     {
         //Creates a list of accounts
         public List<Account> accounts = new List<Account>();
-        
+
 
         public ATM()
         {
             InitializeComponent();
             TestingMethod();
-            
+
 
         }
 
         //For testing purposes
         private void TestingMethod()
         {
-            
-            if (CreateAccount(11111, 1111, 10))
+
+            if (CreateAccount(111111, 1111, 10))
             {
                 Debug.WriteLine("success");
             }
@@ -30,7 +30,7 @@ namespace ATM_Simulator
                 Debug.WriteLine("fail");
             }
 
-            if (AccountExists(11111))
+            if (AccountExists(111111))
             {
                 Debug.WriteLine("success");
             }
@@ -39,7 +39,7 @@ namespace ATM_Simulator
                 Debug.WriteLine("fail");
             }
 
-            if (CheckPin(11111, 1111))
+            if (CheckPin(111111, 1111))
             {
                 Debug.WriteLine("success");
             }
@@ -87,12 +87,31 @@ namespace ATM_Simulator
             }
         }
 
+        // method to check if the login details are valid when the login button is clicked
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+
+            // get the contents of the account number and pin number fields, 
+            // and convert to ints
+            int accntNum = Convert.ToInt32(accNumTxtBox.Text);
+            int pinNum = Convert.ToInt32(pinTxtBox.Text);
+
+            // if account details are valid
+            if (CheckPin(accntNum, pinNum))
+            {
+
+                // hide the login screen
+                loginPanel.Visible = false;
+            }
+        }
+
 
         //Method to create an account
         private bool CreateAccount(int accountNumber, int pinNum, int startingBalance)
         {
             //Checks if this account number already exists, if so, account cannot be created
-            if(AccountExists(accountNumber)) {
+            if (AccountExists(accountNumber))
+            {
                 return false;
             }
             else
@@ -107,7 +126,7 @@ namespace ATM_Simulator
 
         //Method to check if an account exists
         private bool AccountExists(int enteredNum)
-        {   
+        {
             //Loop through each account in the list of accounts
             foreach (Account account in accounts)
             {
@@ -130,7 +149,7 @@ namespace ATM_Simulator
                 //If the account number matches, return true
                 if (account.accountNum == enteredAcc)
                 {
-                    if(account.pin == enteredPin)
+                    if (account.pin == enteredPin)
                     {
                         //Pin is valid as account pin matches the entered pin
                         return true;
@@ -145,5 +164,6 @@ namespace ATM_Simulator
             //Only come here if there is not accounts that exist at all
             return false;
         }
+
     }
 }
