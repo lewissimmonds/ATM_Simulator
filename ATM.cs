@@ -25,32 +25,18 @@ namespace ATM_Simulator
         private void TestingMethod()
         {
 
-            if (CreateAccount(111111, 1111, 10))
-            {
-                Debug.WriteLine("success");
-            }
-            else
-            {
-                Debug.WriteLine("fail");
-            }
+            CreateAccount(111111, 1111, 10);
+            CreateAccount(222222, 2222, 20);
+            CreateAccount(333333, 3333, 30);
 
-            if (AccountExists(111111))
+/*            foreach (Account account in accounts)
             {
-                Debug.WriteLine("success");
-            }
-            else
-            {
-                Debug.WriteLine("fail");
-            }
+                string blah = account.accountNum.ToString();
+                string blh = account.pin.ToString();
+                MessageBox.Show(blah + "\n" + blh);
 
-            if (CheckPin(111111, 1111))
-            {
-                Debug.WriteLine("success");
-            }
-            else
-            {
-                Debug.WriteLine("fail");
-            }
+            }*/
+
         }
 
         // method to control the keypresses inside the account number text box
@@ -138,7 +124,7 @@ namespace ATM_Simulator
                 }
                 else
                 {
-                    //Account num does not already exist so it is create
+                    //Account num does not already exist so it is created
                     Account newAccount = new Account(accountNumber, pinNum, startingBalance);
                     accounts.Add(newAccount);
                     return true;
@@ -153,7 +139,7 @@ namespace ATM_Simulator
         }
 
         //Method to check pin is 4 digits long and account is 6 digits long
-        private bool LengthCheck(int accNum, int pin)
+        private static bool LengthCheck(int accNum, int pin)
         {
             if (accNum.ToString().Length == 6)
             {
@@ -187,48 +173,28 @@ namespace ATM_Simulator
                 {
                     return true;
                 }
-                else
-                {
-                    return false;
-                }
             }
 
             //If no account with the given account number was found, return false
             return false;
         }
 
+        // method to check the account number and pin entered
         private bool CheckPin(int enteredAcc, int enteredPin)
         {
-            //Loop through each account in the list of accounts
+            // Loop through each account in the list of accounts
             foreach (Account account in accounts)
             {
-                //If the account number matches, return true
-                if (account.accountNum == enteredAcc)
+                // If the account number and pin match, set the current user to the found account and return true
+                if (account.accountNum == enteredAcc && account.pin == enteredPin)
                 {
-                    if (account.pin == enteredPin)
-                    {
-
-                        // set the current user to the found account
-                        currentUser = account;
-
-                        //Pin is valid as account pin matches the entered pin
-                        return true;
-                    }
-                    else
-                    {
-                        //Pin is not valid as account pin does not match the entered pin
-                        Debug.WriteLine("ERROR: Pin does not match");
-                        return false;
-                    }
-                }
-                else
-                {
-                    Debug.WriteLine("ERROR:Account number not valid");
-                    return false;
+                    currentUser = account;
+                    return true;
                 }
             }
-            //Only come here if there is not accounts that exist at all
-            Debug.WriteLine("ERROR: No accounts exist");
+
+            // If no account with the given account number and pin was found, show an error message and return false
+            MessageBox.Show("ERROR: Account details incorrect or account does not exist");
             return false;
         }
 
