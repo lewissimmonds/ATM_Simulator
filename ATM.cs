@@ -7,14 +7,16 @@ namespace ATM_Simulator
     {
         //Creates a list of accounts
         public List<Account> accounts = new List<Account>();
+        private Account currentUser;
 
 
         public ATM()
         {
-            
+
             InitializeComponent();
             loginPanel.Visible = true;
             accntScreenPanel.Visible = false;
+            balancePanel.Visible = false;
             TestingMethod();
 
         }
@@ -107,6 +109,10 @@ namespace ATM_Simulator
             // if account details are valid
             if (CheckPin(accntNum, pinNum))
             {
+
+                // display the account balance in a label
+                balanceLabel.Text = "Your balance is: £" + currentUser.balance.ToString();
+
                 // hide the login screen
                 accntScreenPanel.BringToFront();
                 accntScreenPanel.Visible = true;
@@ -201,6 +207,10 @@ namespace ATM_Simulator
                 {
                     if (account.pin == enteredPin)
                     {
+
+                        // set the current user to the found account
+                        currentUser = account;
+
                         //Pin is valid as account pin matches the entered pin
                         return true;
                     }
@@ -220,6 +230,22 @@ namespace ATM_Simulator
             //Only come here if there is not accounts that exist at all
             Debug.WriteLine("ERROR: No accounts exist");
             return false;
+        }
+
+        // method to bring user to the balance screen
+        private void checkBalanceButton_Click(object sender, EventArgs e)
+        {
+
+            balancePanel.BringToFront();
+            balancePanel.Visible = true;
+        }
+
+        // method to return the user to the account screen
+        private void balanceReturnButton_Click(object sender, EventArgs e)
+        {
+            balancePanel.Visible = false;
+            accntScreenPanel.BringToFront();
+            accntScreenPanel.Visible = true;
         }
     }
 }
