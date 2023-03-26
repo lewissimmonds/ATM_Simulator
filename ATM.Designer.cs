@@ -53,7 +53,7 @@
             loginPanel.Controls.Add(pinTxtBox);
             loginPanel.Controls.Add(accNumTxtBox);
             loginPanel.Controls.Add(loginPanelLabel);
-            //loginPanel.Controls.Add(accntScreenPanel);
+            loginPanel.Controls.Add(accntScreenPanel);
             loginPanel.Dock = DockStyle.Fill;
             loginPanel.Location = new Point(0, 0);
             loginPanel.Name = "loginPanel";
@@ -135,7 +135,7 @@
             accntScreenPanel.Location = new Point(0, 0);
             accntScreenPanel.Name = "accntScreenPanel";
             accntScreenPanel.Size = new Size(800, 450);
-            accntScreenPanel.TabIndex = 7;
+            accntScreenPanel.TabIndex = 1;
             // 
             // returnCardButton
             // 

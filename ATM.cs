@@ -11,9 +11,11 @@ namespace ATM_Simulator
 
         public ATM()
         {
+            
             InitializeComponent();
+            loginPanel.Visible = true;
+            accntScreenPanel.Visible = false;
             TestingMethod();
-
 
         }
 
@@ -106,7 +108,7 @@ namespace ATM_Simulator
             if (CheckPin(accntNum, pinNum))
             {
                 // hide the login screen
-                loginPanel.Visible = false;
+                accntScreenPanel.BringToFront();
                 accntScreenPanel.Visible = true;
             }
             else
