@@ -90,6 +90,12 @@ namespace ATM_Simulator
         // method to check if the login details are valid when the login button is clicked
         private void loginButton_Click(object sender, EventArgs e)
         {
+            // check if account number and pin number text boxes are empty
+            if (string.IsNullOrWhiteSpace(accNumTxtBox.Text) || string.IsNullOrWhiteSpace(pinTxtBox.Text))
+            {
+                MessageBox.Show("Account details incorrect or account does not exist");
+                return;
+            }
 
             // get the contents of the account number and pin number fields, 
             // and convert to ints
@@ -99,9 +105,13 @@ namespace ATM_Simulator
             // if account details are valid
             if (CheckPin(accntNum, pinNum))
             {
-
                 // hide the login screen
                 loginPanel.Visible = false;
+                accntScreenPanel.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Account details incorrect or account does not exist");
             }
         }
 

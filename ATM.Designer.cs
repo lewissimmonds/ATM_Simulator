@@ -36,7 +36,12 @@
             pinTxtBox = new TextBox();
             accNumTxtBox = new TextBox();
             loginPanelLabel = new Label();
+            accntScreenPanel = new Panel();
+            returnCardButton = new Button();
+            checkBalanceButton = new Button();
+            withdrawButton = new Button();
             loginPanel.SuspendLayout();
+            accntScreenPanel.SuspendLayout();
             SuspendLayout();
             // 
             // loginPanel
@@ -48,6 +53,7 @@
             loginPanel.Controls.Add(pinTxtBox);
             loginPanel.Controls.Add(accNumTxtBox);
             loginPanel.Controls.Add(loginPanelLabel);
+            //loginPanel.Controls.Add(accntScreenPanel);
             loginPanel.Dock = DockStyle.Fill;
             loginPanel.Location = new Point(0, 0);
             loginPanel.Name = "loginPanel";
@@ -120,6 +126,44 @@
             loginPanelLabel.TabIndex = 0;
             loginPanelLabel.Text = "ATM";
             // 
+            // accntScreenPanel
+            // 
+            accntScreenPanel.Controls.Add(returnCardButton);
+            accntScreenPanel.Controls.Add(checkBalanceButton);
+            accntScreenPanel.Controls.Add(withdrawButton);
+            accntScreenPanel.Dock = DockStyle.Fill;
+            accntScreenPanel.Location = new Point(0, 0);
+            accntScreenPanel.Name = "accntScreenPanel";
+            accntScreenPanel.Size = new Size(800, 450);
+            accntScreenPanel.TabIndex = 7;
+            // 
+            // returnCardButton
+            // 
+            returnCardButton.Location = new Point(332, 326);
+            returnCardButton.Name = "returnCardButton";
+            returnCardButton.Size = new Size(119, 57);
+            returnCardButton.TabIndex = 2;
+            returnCardButton.Text = "Return Card";
+            returnCardButton.UseVisualStyleBackColor = true;
+            // 
+            // checkBalanceButton
+            // 
+            checkBalanceButton.Location = new Point(332, 206);
+            checkBalanceButton.Name = "checkBalanceButton";
+            checkBalanceButton.Size = new Size(119, 61);
+            checkBalanceButton.TabIndex = 1;
+            checkBalanceButton.Text = "Check Balance";
+            checkBalanceButton.UseVisualStyleBackColor = true;
+            // 
+            // withdrawButton
+            // 
+            withdrawButton.Location = new Point(332, 81);
+            withdrawButton.Name = "withdrawButton";
+            withdrawButton.Size = new Size(119, 58);
+            withdrawButton.TabIndex = 0;
+            withdrawButton.Text = "Withdraw";
+            withdrawButton.UseVisualStyleBackColor = true;
+            // 
             // ATM
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -130,6 +174,7 @@
             Text = "Form1";
             loginPanel.ResumeLayout(false);
             loginPanel.PerformLayout();
+            accntScreenPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -143,5 +188,9 @@
         private TextBox pinTxtBox;
         private TextBox accNumTxtBox;
         private Button loginButton;
+        private Panel accntScreenPanel;
+        private Button returnCardButton;
+        private Button checkBalanceButton;
+        private Button withdrawButton;
     }
 }
