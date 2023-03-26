@@ -36,7 +36,16 @@
             pinTxtBox = new TextBox();
             accNumTxtBox = new TextBox();
             loginPanelLabel = new Label();
+            accntScreenPanel = new Panel();
+            returnCardButton = new Button();
+            checkBalanceButton = new Button();
+            withdrawButton = new Button();
+            balancePanel = new Panel();
+            balanceReturnButton = new Button();
+            balanceLabel = new Label();
             loginPanel.SuspendLayout();
+            accntScreenPanel.SuspendLayout();
+            balancePanel.SuspendLayout();
             SuspendLayout();
             // 
             // loginPanel
@@ -48,6 +57,7 @@
             loginPanel.Controls.Add(pinTxtBox);
             loginPanel.Controls.Add(accNumTxtBox);
             loginPanel.Controls.Add(loginPanelLabel);
+            loginPanel.Controls.Add(accntScreenPanel);
             loginPanel.Dock = DockStyle.Fill;
             loginPanel.Location = new Point(0, 0);
             loginPanel.Name = "loginPanel";
@@ -120,6 +130,77 @@
             loginPanelLabel.TabIndex = 0;
             loginPanelLabel.Text = "ATM";
             // 
+            // accntScreenPanel
+            // 
+            accntScreenPanel.Controls.Add(returnCardButton);
+            accntScreenPanel.Controls.Add(checkBalanceButton);
+            accntScreenPanel.Controls.Add(withdrawButton);
+            accntScreenPanel.Controls.Add(balancePanel);
+            accntScreenPanel.Dock = DockStyle.Fill;
+            accntScreenPanel.Location = new Point(0, 0);
+            accntScreenPanel.Name = "accntScreenPanel";
+            accntScreenPanel.Size = new Size(800, 450);
+            accntScreenPanel.TabIndex = 1;
+            // 
+            // returnCardButton
+            // 
+            returnCardButton.Location = new Point(332, 326);
+            returnCardButton.Name = "returnCardButton";
+            returnCardButton.Size = new Size(119, 57);
+            returnCardButton.TabIndex = 2;
+            returnCardButton.Text = "Return Card";
+            returnCardButton.UseVisualStyleBackColor = true;
+            // 
+            // checkBalanceButton
+            // 
+            checkBalanceButton.Location = new Point(332, 206);
+            checkBalanceButton.Name = "checkBalanceButton";
+            checkBalanceButton.Size = new Size(119, 61);
+            checkBalanceButton.TabIndex = 1;
+            checkBalanceButton.Text = "Check Balance";
+            checkBalanceButton.UseVisualStyleBackColor = true;
+            checkBalanceButton.Click += checkBalanceButton_Click;
+            // 
+            // withdrawButton
+            // 
+            withdrawButton.Location = new Point(332, 81);
+            withdrawButton.Name = "withdrawButton";
+            withdrawButton.Size = new Size(119, 58);
+            withdrawButton.TabIndex = 0;
+            withdrawButton.Text = "Withdraw";
+            withdrawButton.UseVisualStyleBackColor = true;
+            // 
+            // balancePanel
+            // 
+            balancePanel.Controls.Add(balanceReturnButton);
+            balancePanel.Controls.Add(balanceLabel);
+            balancePanel.Dock = DockStyle.Fill;
+            balancePanel.Location = new Point(0, 0);
+            balancePanel.Name = "balancePanel";
+            balancePanel.Size = new Size(800, 450);
+            balancePanel.TabIndex = 3;
+            // 
+            // balanceReturnButton
+            // 
+            balanceReturnButton.Location = new Point(27, 28);
+            balanceReturnButton.Name = "balanceReturnButton";
+            balanceReturnButton.Size = new Size(75, 23);
+            balanceReturnButton.TabIndex = 1;
+            balanceReturnButton.Text = "Return";
+            balanceReturnButton.UseVisualStyleBackColor = true;
+            balanceReturnButton.Click += balanceReturnButton_Click;
+            // 
+            // balanceLabel
+            // 
+            balanceLabel.Dock = DockStyle.Fill;
+            balanceLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            balanceLabel.Location = new Point(0, 0);
+            balanceLabel.Name = "balanceLabel";
+            balanceLabel.Size = new Size(800, 450);
+            balanceLabel.TabIndex = 0;
+            balanceLabel.Text = "label1";
+            balanceLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // ATM
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -130,6 +211,8 @@
             Text = "Form1";
             loginPanel.ResumeLayout(false);
             loginPanel.PerformLayout();
+            accntScreenPanel.ResumeLayout(false);
+            balancePanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -143,5 +226,12 @@
         private TextBox pinTxtBox;
         private TextBox accNumTxtBox;
         private Button loginButton;
+        private Panel accntScreenPanel;
+        private Button returnCardButton;
+        private Button checkBalanceButton;
+        private Button withdrawButton;
+        private Panel balancePanel;
+        private Button balanceReturnButton;
+        private Label balanceLabel;
     }
 }
