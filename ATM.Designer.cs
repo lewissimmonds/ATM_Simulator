@@ -40,15 +40,19 @@
             ReturnCardButton = new Button();
             CheckBalanceButton = new Button();
             WithdrawButton = new Button();
-            BalancePanel = new Panel();
             WithdrawPanel = new Panel();
+            ConfirmWithdrawButton = new Button();
+            WithdrawTxtBox = new TextBox();
+            WithdrawBalanceLabel = new Label();
+            WithdrawQLabel = new Label();
             WithdrawReturnButton = new Button();
+            BalancePanel = new Panel();
             BalanceReturnButton = new Button();
             BalanceLabel = new Label();
             LoginPanel.SuspendLayout();
             AccntScreenPanel.SuspendLayout();
-            BalancePanel.SuspendLayout();
             WithdrawPanel.SuspendLayout();
+            BalancePanel.SuspendLayout();
             SuspendLayout();
             // 
             // LoginPanel
@@ -138,6 +142,7 @@
             AccntScreenPanel.Controls.Add(ReturnCardButton);
             AccntScreenPanel.Controls.Add(CheckBalanceButton);
             AccntScreenPanel.Controls.Add(WithdrawButton);
+            AccntScreenPanel.Controls.Add(WithdrawPanel);
             AccntScreenPanel.Controls.Add(BalancePanel);
             AccntScreenPanel.Dock = DockStyle.Fill;
             AccntScreenPanel.Location = new Point(0, 0);
@@ -175,25 +180,59 @@
             WithdrawButton.UseVisualStyleBackColor = true;
             WithdrawButton.Click += WithdrawButton_Click;
             // 
-            // BalancePanel
-            // 
-            BalancePanel.Controls.Add(WithdrawPanel);
-            BalancePanel.Controls.Add(BalanceReturnButton);
-            BalancePanel.Controls.Add(BalanceLabel);
-            BalancePanel.Dock = DockStyle.Fill;
-            BalancePanel.Location = new Point(0, 0);
-            BalancePanel.Name = "BalancePanel";
-            BalancePanel.Size = new Size(800, 450);
-            BalancePanel.TabIndex = 3;
-            // 
             // WithdrawPanel
             // 
+            WithdrawPanel.Controls.Add(ConfirmWithdrawButton);
+            WithdrawPanel.Controls.Add(WithdrawTxtBox);
+            WithdrawPanel.Controls.Add(WithdrawBalanceLabel);
+            WithdrawPanel.Controls.Add(WithdrawQLabel);
             WithdrawPanel.Controls.Add(WithdrawReturnButton);
             WithdrawPanel.Dock = DockStyle.Fill;
             WithdrawPanel.Location = new Point(0, 0);
             WithdrawPanel.Name = "WithdrawPanel";
             WithdrawPanel.Size = new Size(800, 450);
             WithdrawPanel.TabIndex = 2;
+            // 
+            // ConfirmWithdrawButton
+            // 
+            ConfirmWithdrawButton.Location = new Point(341, 338);
+            ConfirmWithdrawButton.Name = "ConfirmWithdrawButton";
+            ConfirmWithdrawButton.Size = new Size(100, 23);
+            ConfirmWithdrawButton.TabIndex = 4;
+            ConfirmWithdrawButton.Text = "Withdraw";
+            ConfirmWithdrawButton.UseVisualStyleBackColor = true;
+            ConfirmWithdrawButton.Click += ConfirmWithdrawButton_Click;
+            // 
+            // WithdrawTxtBox
+            // 
+            WithdrawTxtBox.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            WithdrawTxtBox.Location = new Point(341, 221);
+            WithdrawTxtBox.Name = "WithdrawTxtBox";
+            WithdrawTxtBox.Size = new Size(100, 33);
+            WithdrawTxtBox.TabIndex = 3;
+            WithdrawTxtBox.TextAlign = HorizontalAlignment.Center;
+            // 
+            // WithdrawBalanceLabel
+            // 
+            WithdrawBalanceLabel.AutoSize = true;
+            WithdrawBalanceLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            WithdrawBalanceLabel.Location = new Point(320, 48);
+            WithdrawBalanceLabel.Name = "WithdrawBalanceLabel";
+            WithdrawBalanceLabel.Size = new Size(52, 21);
+            WithdrawBalanceLabel.TabIndex = 2;
+            WithdrawBalanceLabel.Text = "label1";
+            WithdrawBalanceLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // WithdrawQLabel
+            // 
+            WithdrawQLabel.AutoSize = true;
+            WithdrawQLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            WithdrawQLabel.Location = new Point(207, 142);
+            WithdrawQLabel.Name = "WithdrawQLabel";
+            WithdrawQLabel.Size = new Size(390, 25);
+            WithdrawQLabel.TabIndex = 1;
+            WithdrawQLabel.Text = "Enter the amount you would like to withdraw";
+            WithdrawQLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // WithdrawReturnButton
             // 
@@ -204,6 +243,16 @@
             WithdrawReturnButton.Text = "Return";
             WithdrawReturnButton.UseVisualStyleBackColor = true;
             WithdrawReturnButton.Click += WithdrawReturnButton_Click;
+            // 
+            // BalancePanel
+            // 
+            BalancePanel.Controls.Add(BalanceReturnButton);
+            BalancePanel.Controls.Add(BalanceLabel);
+            BalancePanel.Dock = DockStyle.Fill;
+            BalancePanel.Location = new Point(0, 0);
+            BalancePanel.Name = "BalancePanel";
+            BalancePanel.Size = new Size(800, 450);
+            BalancePanel.TabIndex = 3;
             // 
             // BalanceReturnButton
             // 
@@ -237,8 +286,9 @@
             LoginPanel.ResumeLayout(false);
             LoginPanel.PerformLayout();
             AccntScreenPanel.ResumeLayout(false);
-            BalancePanel.ResumeLayout(false);
             WithdrawPanel.ResumeLayout(false);
+            WithdrawPanel.PerformLayout();
+            BalancePanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -261,5 +311,9 @@
         private Label BalanceLabel;
         private Panel WithdrawPanel;
         private Button WithdrawReturnButton;
+        private Label WithdrawQLabel;
+        private Button ConfirmWithdrawButton;
+        private TextBox WithdrawTxtBox;
+        private Label WithdrawBalanceLabel;
     }
 }

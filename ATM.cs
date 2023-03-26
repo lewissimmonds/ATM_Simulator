@@ -11,8 +11,8 @@ namespace ATM_Simulator
             InitializeComponent();
             LoginPanel.Visible = true;
             AccntScreenPanel.Visible = false;
-            BalancePanel.Visible = false;
             WithdrawPanel.Visible = false;
+            BalancePanel.Visible = false;
 
             this.bank = bank;
         }
@@ -75,7 +75,7 @@ namespace ATM_Simulator
             {
 
                 // display the account balance in a label
-                BalanceLabel.Text = "Your balance is: £" + bank.currentUser.balance.ToString();
+                
 
                 // hide the login screen
                 AccntScreenPanel.BringToFront();
@@ -90,14 +90,19 @@ namespace ATM_Simulator
         private void WithdrawButton_Click(object sender, EventArgs e)
         {
 
+            WithdrawBalanceLabel.Text = "Your balance is: £" + bank.currentUser.balance.ToString();
 
+            WithdrawPanel.BringToFront();
+            WithdrawPanel.Visible = true;
 
         }
 
         private void WithdrawReturnButton_Click(object sender, EventArgs e)
         {
 
-
+            WithdrawPanel.Visible = false;
+            AccntScreenPanel.BringToFront();
+            AccntScreenPanel.Visible = true;
 
         }
 
@@ -105,6 +110,8 @@ namespace ATM_Simulator
         // method to bring user to the balance screen
         private void CheckBalanceButton_Click(object sender, EventArgs e)
         {
+
+            BalanceLabel.Text = "Your balance is: £" + bank.currentUser.balance.ToString();
 
             BalancePanel.BringToFront();
             BalancePanel.Visible = true;
@@ -129,6 +136,26 @@ namespace ATM_Simulator
             AccntScreenPanel.Visible = false;
             LoginPanel.Visible = true;
             LoginPanel.BringToFront();
+        }
+
+        private void ConfirmWithdrawButton_Click(object sender, EventArgs e)
+        {
+            int amountToWithdraw = Convert.ToInt32(WithdrawTxtBox.Text);
+
+            if (amountToWithdraw > bank.currentUser.balance )
+            {
+
+                MessageBox.Show("ERROR: Amount you are trying to withdraw is greater than your balance");
+
+            } else
+            {
+
+                bank.currentUser.balance -= amountToWithdraw;
+
+            }
+
+            WithdrawBalanceLabel.Text = "Your balance is: £" + bank.currentUser.balance.ToString();
+
         }
     }
 }
