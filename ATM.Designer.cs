@@ -28,210 +28,211 @@
         /// </summary>
         private void InitializeComponent()
         {
-            loginPanel = new Panel();
-            loginButton = new Button();
-            enterInfoLabel = new Label();
-            pinLabel = new Label();
-            accNumLabel = new Label();
-            pinTxtBox = new TextBox();
-            accNumTxtBox = new TextBox();
-            loginPanelLabel = new Label();
-            accntScreenPanel = new Panel();
-            returnCardButton = new Button();
-            checkBalanceButton = new Button();
-            withdrawButton = new Button();
-            balancePanel = new Panel();
-            balanceReturnButton = new Button();
-            balanceLabel = new Label();
-            loginPanel.SuspendLayout();
-            accntScreenPanel.SuspendLayout();
-            balancePanel.SuspendLayout();
+            LoginPanel = new Panel();
+            LoginButton = new Button();
+            EnterInfoLabel = new Label();
+            PinLabel = new Label();
+            AccNumLabel = new Label();
+            PinTxtBox = new TextBox();
+            AccNumTxtBox = new TextBox();
+            LoginPanelLabel = new Label();
+            AccntScreenPanel = new Panel();
+            ReturnCardButton = new Button();
+            CheckBalanceButton = new Button();
+            WithdrawButton = new Button();
+            BalancePanel = new Panel();
+            BalanceReturnButton = new Button();
+            BalanceLabel = new Label();
+            LoginPanel.SuspendLayout();
+            AccntScreenPanel.SuspendLayout();
+            BalancePanel.SuspendLayout();
             SuspendLayout();
             // 
-            // loginPanel
+            // LoginPanel
             // 
-            loginPanel.Controls.Add(loginButton);
-            loginPanel.Controls.Add(enterInfoLabel);
-            loginPanel.Controls.Add(pinLabel);
-            loginPanel.Controls.Add(accNumLabel);
-            loginPanel.Controls.Add(pinTxtBox);
-            loginPanel.Controls.Add(accNumTxtBox);
-            loginPanel.Controls.Add(loginPanelLabel);
-            loginPanel.Controls.Add(accntScreenPanel);
-            loginPanel.Dock = DockStyle.Fill;
-            loginPanel.Location = new Point(0, 0);
-            loginPanel.Name = "loginPanel";
-            loginPanel.Size = new Size(800, 450);
-            loginPanel.TabIndex = 0;
+            LoginPanel.Controls.Add(LoginButton);
+            LoginPanel.Controls.Add(EnterInfoLabel);
+            LoginPanel.Controls.Add(PinLabel);
+            LoginPanel.Controls.Add(AccNumLabel);
+            LoginPanel.Controls.Add(PinTxtBox);
+            LoginPanel.Controls.Add(AccNumTxtBox);
+            LoginPanel.Controls.Add(LoginPanelLabel);
+            LoginPanel.Controls.Add(AccntScreenPanel);
+            LoginPanel.Dock = DockStyle.Fill;
+            LoginPanel.Location = new Point(0, 0);
+            LoginPanel.Name = "LoginPanel";
+            LoginPanel.Size = new Size(800, 450);
+            LoginPanel.TabIndex = 0;
             // 
-            // loginButton
+            // LoginButton
             // 
-            loginButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            loginButton.Location = new Point(332, 367);
-            loginButton.Name = "loginButton";
-            loginButton.Size = new Size(119, 40);
-            loginButton.TabIndex = 6;
-            loginButton.Text = "LOGIN";
-            loginButton.UseVisualStyleBackColor = true;
-            loginButton.Click += loginButton_Click;
+            LoginButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            LoginButton.Location = new Point(332, 367);
+            LoginButton.Name = "LoginButton";
+            LoginButton.Size = new Size(119, 40);
+            LoginButton.TabIndex = 6;
+            LoginButton.Text = "LOGIN";
+            LoginButton.UseVisualStyleBackColor = true;
+            LoginButton.Click += loginButton_Click;
             // 
-            // enterInfoLabel
+            // EnterInfoLabel
             // 
-            enterInfoLabel.AutoSize = true;
-            enterInfoLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            enterInfoLabel.Location = new Point(318, 155);
-            enterInfoLabel.Name = "enterInfoLabel";
-            enterInfoLabel.Size = new Size(133, 21);
-            enterInfoLabel.TabIndex = 5;
-            enterInfoLabel.Text = "Please enter your:";
+            EnterInfoLabel.AutoSize = true;
+            EnterInfoLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            EnterInfoLabel.Location = new Point(318, 155);
+            EnterInfoLabel.Name = "EnterInfoLabel";
+            EnterInfoLabel.Size = new Size(133, 21);
+            EnterInfoLabel.TabIndex = 5;
+            EnterInfoLabel.Text = "Please enter your:";
             // 
-            // pinLabel
+            // PinLabel
             // 
-            pinLabel.AutoSize = true;
-            pinLabel.Location = new Point(238, 291);
-            pinLabel.Name = "pinLabel";
-            pinLabel.Size = new Size(27, 15);
-            pinLabel.TabIndex = 4;
-            pinLabel.Text = "Pin:";
+            PinLabel.AutoSize = true;
+            PinLabel.Location = new Point(238, 291);
+            PinLabel.Name = "PinLabel";
+            PinLabel.Size = new Size(27, 15);
+            PinLabel.TabIndex = 4;
+            PinLabel.Text = "Pin:";
             // 
-            // accNumLabel
+            // AccNumLabel
             // 
-            accNumLabel.AutoSize = true;
-            accNumLabel.Location = new Point(163, 229);
-            accNumLabel.Name = "accNumLabel";
-            accNumLabel.Size = new Size(102, 15);
-            accNumLabel.TabIndex = 3;
-            accNumLabel.Text = "Account Number:";
+            AccNumLabel.AutoSize = true;
+            AccNumLabel.Location = new Point(163, 229);
+            AccNumLabel.Name = "AccNumLabel";
+            AccNumLabel.Size = new Size(102, 15);
+            AccNumLabel.TabIndex = 3;
+            AccNumLabel.Text = "Account Number:";
             // 
-            // pinTxtBox
+            // PinTxtBox
             // 
-            pinTxtBox.Location = new Point(283, 288);
-            pinTxtBox.Name = "pinTxtBox";
-            pinTxtBox.Size = new Size(298, 23);
-            pinTxtBox.TabIndex = 2;
-            pinTxtBox.KeyPress += pinTxtBox_KeyPress;
+            PinTxtBox.Location = new Point(283, 288);
+            PinTxtBox.Name = "PinTxtBox";
+            PinTxtBox.Size = new Size(298, 23);
+            PinTxtBox.TabIndex = 2;
+            PinTxtBox.KeyPress += pinTxtBox_KeyPress;
             // 
-            // accNumTxtBox
+            // AccNumTxtBox
             // 
-            accNumTxtBox.Location = new Point(283, 226);
-            accNumTxtBox.Name = "accNumTxtBox";
-            accNumTxtBox.Size = new Size(298, 23);
-            accNumTxtBox.TabIndex = 1;
-            accNumTxtBox.KeyPress += accNumTxtBox_KeyPress;
+            AccNumTxtBox.Location = new Point(283, 226);
+            AccNumTxtBox.Name = "AccNumTxtBox";
+            AccNumTxtBox.Size = new Size(298, 23);
+            AccNumTxtBox.TabIndex = 1;
+            AccNumTxtBox.KeyPress += accNumTxtBox_KeyPress;
             // 
-            // loginPanelLabel
+            // LoginPanelLabel
             // 
-            loginPanelLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            loginPanelLabel.AutoSize = true;
-            loginPanelLabel.Font = new Font("Russo One", 47.9999924F, FontStyle.Regular, GraphicsUnit.Point);
-            loginPanelLabel.Location = new Point(301, 38);
-            loginPanelLabel.Name = "loginPanelLabel";
-            loginPanelLabel.Size = new Size(172, 77);
-            loginPanelLabel.TabIndex = 0;
-            loginPanelLabel.Text = "ATM";
+            LoginPanelLabel.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            LoginPanelLabel.AutoSize = true;
+            LoginPanelLabel.Font = new Font("Russo One", 47.9999924F, FontStyle.Regular, GraphicsUnit.Point);
+            LoginPanelLabel.Location = new Point(301, 38);
+            LoginPanelLabel.Name = "LoginPanelLabel";
+            LoginPanelLabel.Size = new Size(172, 77);
+            LoginPanelLabel.TabIndex = 0;
+            LoginPanelLabel.Text = "ATM";
             // 
-            // accntScreenPanel
+            // AccntScreenPanel
             // 
-            accntScreenPanel.Controls.Add(returnCardButton);
-            accntScreenPanel.Controls.Add(checkBalanceButton);
-            accntScreenPanel.Controls.Add(withdrawButton);
-            accntScreenPanel.Controls.Add(balancePanel);
-            accntScreenPanel.Dock = DockStyle.Fill;
-            accntScreenPanel.Location = new Point(0, 0);
-            accntScreenPanel.Name = "accntScreenPanel";
-            accntScreenPanel.Size = new Size(800, 450);
-            accntScreenPanel.TabIndex = 1;
+            AccntScreenPanel.Controls.Add(ReturnCardButton);
+            AccntScreenPanel.Controls.Add(CheckBalanceButton);
+            AccntScreenPanel.Controls.Add(WithdrawButton);
+            AccntScreenPanel.Controls.Add(BalancePanel);
+            AccntScreenPanel.Dock = DockStyle.Fill;
+            AccntScreenPanel.Location = new Point(0, 0);
+            AccntScreenPanel.Name = "AccntScreenPanel";
+            AccntScreenPanel.Size = new Size(800, 450);
+            AccntScreenPanel.TabIndex = 1;
             // 
-            // returnCardButton
+            // ReturnCardButton
             // 
-            returnCardButton.Location = new Point(332, 326);
-            returnCardButton.Name = "returnCardButton";
-            returnCardButton.Size = new Size(119, 57);
-            returnCardButton.TabIndex = 2;
-            returnCardButton.Text = "Return Card";
-            returnCardButton.UseVisualStyleBackColor = true;
+            ReturnCardButton.Location = new Point(332, 326);
+            ReturnCardButton.Name = "ReturnCardButton";
+            ReturnCardButton.Size = new Size(119, 57);
+            ReturnCardButton.TabIndex = 2;
+            ReturnCardButton.Text = "Return Card";
+            ReturnCardButton.UseVisualStyleBackColor = true;
+            ReturnCardButton.Click += ReturnCardButton_Click;
             // 
-            // checkBalanceButton
+            // CheckBalanceButton
             // 
-            checkBalanceButton.Location = new Point(332, 206);
-            checkBalanceButton.Name = "checkBalanceButton";
-            checkBalanceButton.Size = new Size(119, 61);
-            checkBalanceButton.TabIndex = 1;
-            checkBalanceButton.Text = "Check Balance";
-            checkBalanceButton.UseVisualStyleBackColor = true;
-            checkBalanceButton.Click += checkBalanceButton_Click;
+            CheckBalanceButton.Location = new Point(332, 206);
+            CheckBalanceButton.Name = "CheckBalanceButton";
+            CheckBalanceButton.Size = new Size(119, 61);
+            CheckBalanceButton.TabIndex = 1;
+            CheckBalanceButton.Text = "Check Balance";
+            CheckBalanceButton.UseVisualStyleBackColor = true;
+            CheckBalanceButton.Click += checkBalanceButton_Click;
             // 
-            // withdrawButton
+            // WithdrawButton
             // 
-            withdrawButton.Location = new Point(332, 81);
-            withdrawButton.Name = "withdrawButton";
-            withdrawButton.Size = new Size(119, 58);
-            withdrawButton.TabIndex = 0;
-            withdrawButton.Text = "Withdraw";
-            withdrawButton.UseVisualStyleBackColor = true;
+            WithdrawButton.Location = new Point(332, 81);
+            WithdrawButton.Name = "WithdrawButton";
+            WithdrawButton.Size = new Size(119, 58);
+            WithdrawButton.TabIndex = 0;
+            WithdrawButton.Text = "Withdraw";
+            WithdrawButton.UseVisualStyleBackColor = true;
             // 
-            // balancePanel
+            // BalancePanel
             // 
-            balancePanel.Controls.Add(balanceReturnButton);
-            balancePanel.Controls.Add(balanceLabel);
-            balancePanel.Dock = DockStyle.Fill;
-            balancePanel.Location = new Point(0, 0);
-            balancePanel.Name = "balancePanel";
-            balancePanel.Size = new Size(800, 450);
-            balancePanel.TabIndex = 3;
+            BalancePanel.Controls.Add(BalanceReturnButton);
+            BalancePanel.Controls.Add(BalanceLabel);
+            BalancePanel.Dock = DockStyle.Fill;
+            BalancePanel.Location = new Point(0, 0);
+            BalancePanel.Name = "BalancePanel";
+            BalancePanel.Size = new Size(800, 450);
+            BalancePanel.TabIndex = 3;
             // 
-            // balanceReturnButton
+            // BalanceReturnButton
             // 
-            balanceReturnButton.Location = new Point(27, 28);
-            balanceReturnButton.Name = "balanceReturnButton";
-            balanceReturnButton.Size = new Size(75, 23);
-            balanceReturnButton.TabIndex = 1;
-            balanceReturnButton.Text = "Return";
-            balanceReturnButton.UseVisualStyleBackColor = true;
-            balanceReturnButton.Click += balanceReturnButton_Click;
+            BalanceReturnButton.Location = new Point(27, 28);
+            BalanceReturnButton.Name = "BalanceReturnButton";
+            BalanceReturnButton.Size = new Size(75, 23);
+            BalanceReturnButton.TabIndex = 1;
+            BalanceReturnButton.Text = "Return";
+            BalanceReturnButton.UseVisualStyleBackColor = true;
+            BalanceReturnButton.Click += balanceReturnButton_Click;
             // 
-            // balanceLabel
+            // BalanceLabel
             // 
-            balanceLabel.Dock = DockStyle.Fill;
-            balanceLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            balanceLabel.Location = new Point(0, 0);
-            balanceLabel.Name = "balanceLabel";
-            balanceLabel.Size = new Size(800, 450);
-            balanceLabel.TabIndex = 0;
-            balanceLabel.Text = "label1";
-            balanceLabel.TextAlign = ContentAlignment.MiddleCenter;
+            BalanceLabel.Dock = DockStyle.Fill;
+            BalanceLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            BalanceLabel.Location = new Point(0, 0);
+            BalanceLabel.Name = "BalanceLabel";
+            BalanceLabel.Size = new Size(800, 450);
+            BalanceLabel.TabIndex = 0;
+            BalanceLabel.Text = "label1";
+            BalanceLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // ATM
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(loginPanel);
+            Controls.Add(LoginPanel);
             Name = "ATM";
             Text = "Form1";
-            loginPanel.ResumeLayout(false);
-            loginPanel.PerformLayout();
-            accntScreenPanel.ResumeLayout(false);
-            balancePanel.ResumeLayout(false);
+            LoginPanel.ResumeLayout(false);
+            LoginPanel.PerformLayout();
+            AccntScreenPanel.ResumeLayout(false);
+            BalancePanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel loginPanel;
-        private Label loginPanelLabel;
-        private Label enterInfoLabel;
-        private Label pinLabel;
-        private Label accNumLabel;
-        private TextBox pinTxtBox;
-        private TextBox accNumTxtBox;
-        private Button loginButton;
-        private Panel accntScreenPanel;
-        private Button returnCardButton;
-        private Button checkBalanceButton;
-        private Button withdrawButton;
-        private Panel balancePanel;
-        private Button balanceReturnButton;
-        private Label balanceLabel;
+        private Panel LoginPanel;
+        private Label LoginPanelLabel;
+        private Label EnterInfoLabel;
+        private Label PinLabel;
+        private Label AccNumLabel;
+        private TextBox PinTxtBox;
+        private TextBox AccNumTxtBox;
+        private Button LoginButton;
+        private Panel AccntScreenPanel;
+        private Button ReturnCardButton;
+        private Button CheckBalanceButton;
+        private Button WithdrawButton;
+        private Panel BalancePanel;
+        private Button BalanceReturnButton;
+        private Label BalanceLabel;
     }
 }
