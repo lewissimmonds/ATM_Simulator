@@ -14,9 +14,9 @@ namespace ATM_Simulator
         {
 
             InitializeComponent();
-            loginPanel.Visible = true;
-            accntScreenPanel.Visible = false;
-            balancePanel.Visible = false;
+            LoginPanel.Visible = true;
+            AccntScreenPanel.Visible = false;
+            BalancePanel.Visible = false;
             TestingMethod();
 
         }
@@ -29,13 +29,13 @@ namespace ATM_Simulator
             CreateAccount(222222, 2222, 20);
             CreateAccount(333333, 3333, 30);
 
-/*            foreach (Account account in accounts)
-            {
-                string blah = account.accountNum.ToString();
-                string blh = account.pin.ToString();
-                MessageBox.Show(blah + "\n" + blh);
+            /*            foreach (Account account in accounts)
+                        {
+                            string blah = account.accountNum.ToString();
+                            string blh = account.pin.ToString();
+                            MessageBox.Show(blah + "\n" + blh);
 
-            }*/
+                        }*/
 
         }
 
@@ -46,7 +46,7 @@ namespace ATM_Simulator
             if (char.IsDigit(e.KeyChar))
             {
                 // if there is already 6 digits in the textbox, ignore the keypress
-                if ((accNumTxtBox.Text + e.KeyChar).Length > 6)
+                if ((AccNumTxtBox.Text + e.KeyChar).Length > 6)
                 {
                     e.Handled = true;
                 }
@@ -65,7 +65,7 @@ namespace ATM_Simulator
             if (char.IsDigit(e.KeyChar))
             {
                 // if there is already 4 digits in the textbox, ignore the keypress
-                if ((pinTxtBox.Text + e.KeyChar).Length > 4)
+                if ((PinTxtBox.Text + e.KeyChar).Length > 4)
                 {
                     e.Handled = true;
                 }
@@ -81,7 +81,7 @@ namespace ATM_Simulator
         private void loginButton_Click(object sender, EventArgs e)
         {
             // check if account number and pin number text boxes are empty
-            if (string.IsNullOrWhiteSpace(accNumTxtBox.Text) || string.IsNullOrWhiteSpace(pinTxtBox.Text))
+            if (string.IsNullOrWhiteSpace(AccNumTxtBox.Text) || string.IsNullOrWhiteSpace(PinTxtBox.Text))
             {
                 MessageBox.Show("Account details incorrect or account does not exist");
                 return;
@@ -89,19 +89,19 @@ namespace ATM_Simulator
 
             // get the contents of the account number and pin number fields, 
             // and convert to ints
-            int accntNum = Convert.ToInt32(accNumTxtBox.Text);
-            int pinNum = Convert.ToInt32(pinTxtBox.Text);
+            int accntNum = Convert.ToInt32(AccNumTxtBox.Text);
+            int pinNum = Convert.ToInt32(PinTxtBox.Text);
 
             // if account details are valid
             if (CheckPin(accntNum, pinNum))
             {
 
                 // display the account balance in a label
-                balanceLabel.Text = "Your balance is: £" + currentUser.balance.ToString();
+                BalanceLabel.Text = "Your balance is: £" + currentUser.balance.ToString();
 
                 // hide the login screen
-                accntScreenPanel.BringToFront();
-                accntScreenPanel.Visible = true;
+                AccntScreenPanel.BringToFront();
+                AccntScreenPanel.Visible = true;
             }
             else
             {
@@ -202,16 +202,29 @@ namespace ATM_Simulator
         private void checkBalanceButton_Click(object sender, EventArgs e)
         {
 
-            balancePanel.BringToFront();
-            balancePanel.Visible = true;
+            BalancePanel.BringToFront();
+            BalancePanel.Visible = true;
         }
 
         // method to return the user to the account screen
         private void balanceReturnButton_Click(object sender, EventArgs e)
         {
-            balancePanel.Visible = false;
-            accntScreenPanel.BringToFront();
-            accntScreenPanel.Visible = true;
+            BalancePanel.Visible = false;
+            AccntScreenPanel.BringToFront();
+            AccntScreenPanel.Visible = true;
+        }
+
+        // method to "return the card", aka, log the user out
+        private void ReturnCardButton_Click(object sender, EventArgs e)
+        {
+
+            // reset the login details fields
+            AccNumTxtBox.Text = "";
+            PinTxtBox.Text = "";
+
+            AccntScreenPanel.Visible = false;
+            LoginPanel.Visible = true;
+            LoginPanel.BringToFront();
         }
     }
 }
