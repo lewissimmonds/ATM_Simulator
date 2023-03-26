@@ -1,4 +1,5 @@
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace ATM_Simulator
 {
@@ -14,10 +15,12 @@ namespace ATM_Simulator
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            // Create two threads, each running its own instance of the application
-            Thread Atm0 = new Thread(() => Application.Run(new ATM()));
-            Thread Atm1 = new Thread(() => Application.Run(new ATM()));
-            Thread CenComp = new Thread(() => Application.Run(new ATM())); // REPLACE WITH CENTRAL COMPUTER APP!!!!!!!
+            Bank bank = new Bank();
+
+
+            Thread Atm0 = new Thread(() => Application.Run(new ATM(bank)));
+            Thread Atm1 = new Thread(() => Application.Run(new ATM(bank)));
+            Thread CenComp = new Thread(() => Application.Run(new CentralBankForm(bank))); // REPLACE WITH CENTRAL COMPUTER APP!!!!!!!
 
             // Start the threads
             Atm0.Start();

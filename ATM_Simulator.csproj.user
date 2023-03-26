@@ -4,5 +4,8 @@
     <Compile Update="ATM.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="CentralBankForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
