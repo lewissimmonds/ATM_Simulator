@@ -40,11 +40,14 @@
             ReturnCardButton = new Button();
             CheckBalanceButton = new Button();
             WithdrawButton = new Button();
+            WithdrawPanel = new Panel();
+            WithdrawReturnButton = new Button();
             BalancePanel = new Panel();
             BalanceReturnButton = new Button();
             BalanceLabel = new Label();
             LoginPanel.SuspendLayout();
             AccntScreenPanel.SuspendLayout();
+            WithdrawPanel.SuspendLayout();
             BalancePanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -73,7 +76,7 @@
             LoginButton.TabIndex = 6;
             LoginButton.Text = "LOGIN";
             LoginButton.UseVisualStyleBackColor = true;
-            LoginButton.Click += loginButton_Click;
+            LoginButton.Click += LoginButton_Click;
             // 
             // EnterInfoLabel
             // 
@@ -109,7 +112,7 @@
             PinTxtBox.Name = "PinTxtBox";
             PinTxtBox.Size = new Size(298, 23);
             PinTxtBox.TabIndex = 2;
-            PinTxtBox.KeyPress += pinTxtBox_KeyPress;
+            PinTxtBox.KeyPress += PinTxtBox_KeyPress;
             // 
             // AccNumTxtBox
             // 
@@ -117,7 +120,7 @@
             AccNumTxtBox.Name = "AccNumTxtBox";
             AccNumTxtBox.Size = new Size(298, 23);
             AccNumTxtBox.TabIndex = 1;
-            AccNumTxtBox.KeyPress += accNumTxtBox_KeyPress;
+            AccNumTxtBox.KeyPress += AccNumTxtBox_KeyPress;
             // 
             // LoginPanelLabel
             // 
@@ -160,7 +163,7 @@
             CheckBalanceButton.TabIndex = 1;
             CheckBalanceButton.Text = "Check Balance";
             CheckBalanceButton.UseVisualStyleBackColor = true;
-            CheckBalanceButton.Click += checkBalanceButton_Click;
+            CheckBalanceButton.Click += CheckBalanceButton_Click;
             // 
             // WithdrawButton
             // 
@@ -170,9 +173,30 @@
             WithdrawButton.TabIndex = 0;
             WithdrawButton.Text = "Withdraw";
             WithdrawButton.UseVisualStyleBackColor = true;
+            WithdrawButton.Click += WithdrawButton_Click;
+            // 
+            // WithdrawPanel
+            // 
+            WithdrawPanel.Controls.Add(WithdrawReturnButton);
+            WithdrawPanel.Dock = DockStyle.Fill;
+            WithdrawPanel.Location = new Point(0, 0);
+            WithdrawPanel.Name = "WithdrawPanel";
+            WithdrawPanel.Size = new Size(800, 450);
+            WithdrawPanel.TabIndex = 2;
+            // 
+            // WithdrawReturnButton
+            // 
+            WithdrawReturnButton.Location = new Point(26, 27);
+            WithdrawReturnButton.Name = "WithdrawReturnButton";
+            WithdrawReturnButton.Size = new Size(75, 23);
+            WithdrawReturnButton.TabIndex = 0;
+            WithdrawReturnButton.Text = "button1";
+            WithdrawReturnButton.UseVisualStyleBackColor = true;
+            WithdrawReturnButton.Click += WithdrawReturnButton_Click;
             // 
             // BalancePanel
             // 
+            BalancePanel.Controls.Add(WithdrawPanel);
             BalancePanel.Controls.Add(BalanceReturnButton);
             BalancePanel.Controls.Add(BalanceLabel);
             BalancePanel.Dock = DockStyle.Fill;
@@ -189,7 +213,7 @@
             BalanceReturnButton.TabIndex = 1;
             BalanceReturnButton.Text = "Return";
             BalanceReturnButton.UseVisualStyleBackColor = true;
-            BalanceReturnButton.Click += balanceReturnButton_Click;
+            BalanceReturnButton.Click += BalanceReturnButton_Click;
             // 
             // BalanceLabel
             // 
@@ -209,10 +233,11 @@
             ClientSize = new Size(800, 450);
             Controls.Add(LoginPanel);
             Name = "ATM";
-            Text = "Form1";
+            Text = "ATM";
             LoginPanel.ResumeLayout(false);
             LoginPanel.PerformLayout();
             AccntScreenPanel.ResumeLayout(false);
+            WithdrawPanel.ResumeLayout(false);
             BalancePanel.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -234,5 +259,7 @@
         private Panel BalancePanel;
         private Button BalanceReturnButton;
         private Label BalanceLabel;
+        private Panel WithdrawPanel;
+        private Button WithdrawReturnButton;
     }
 }
