@@ -19,7 +19,7 @@ namespace ATM_Simulator
         
 
         // method to control the keypresses inside the account number text box
-        private void accNumTxtBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void AccNumTxtBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // check if the key pressed is a digit
             if (char.IsDigit(e.KeyChar))
@@ -38,7 +38,7 @@ namespace ATM_Simulator
         }
 
         // method to control the keypresses inside the pin number text box
-        private void pinTxtBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void PinTxtBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // check if the key pressed is a digit
             if (char.IsDigit(e.KeyChar))
@@ -57,7 +57,7 @@ namespace ATM_Simulator
         }
 
         // method to check if the login details are valid when the login button is clicked
-        private void loginButton_Click(object sender, EventArgs e)
+        private void LoginButton_Click(object sender, EventArgs e)
         {
             // check if account number and pin number text boxes are empty
             if (string.IsNullOrWhiteSpace(AccNumTxtBox.Text) || string.IsNullOrWhiteSpace(PinTxtBox.Text))
@@ -88,11 +88,23 @@ namespace ATM_Simulator
             }
         }
 
+        private void WithdrawButton_Click(object sender, EventArgs e)
+        {
 
-        
+
+
+        }
+
+        private void WithdrawReturnButton_Click(object sender, EventArgs e)
+        {
+
+
+
+        }
+
 
         // method to bring user to the balance screen
-        private void checkBalanceButton_Click(object sender, EventArgs e)
+        private void CheckBalanceButton_Click(object sender, EventArgs e)
         {
 
             BalancePanel.BringToFront();
@@ -100,7 +112,7 @@ namespace ATM_Simulator
         }
 
         // method to return the user to the account screen
-        private void balanceReturnButton_Click(object sender, EventArgs e)
+        private void BalanceReturnButton_Click(object sender, EventArgs e)
         {
             BalancePanel.Visible = false;
             AccntScreenPanel.BringToFront();
