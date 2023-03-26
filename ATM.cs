@@ -12,11 +12,10 @@ namespace ATM_Simulator
             LoginPanel.Visible = true;
             AccntScreenPanel.Visible = false;
             BalancePanel.Visible = false;
+            WithdrawPanel.Visible = false;
 
             this.bank = bank;
         }
-
-        
 
         // method to control the keypresses inside the account number text box
         private void AccNumTxtBox_KeyPress(object sender, KeyPressEventArgs e)

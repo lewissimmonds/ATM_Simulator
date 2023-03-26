@@ -24,8 +24,8 @@ namespace ATM_Simulator
 
             // Start the threads
             Atm0.Start();
-            Atm1.Start();
-            CenComp.Start();
+            //Atm1.Start();
+            //CenComp.Start();
 
             
         }

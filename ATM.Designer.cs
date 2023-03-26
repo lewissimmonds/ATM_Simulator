@@ -40,15 +40,15 @@
             ReturnCardButton = new Button();
             CheckBalanceButton = new Button();
             WithdrawButton = new Button();
+            BalancePanel = new Panel();
             WithdrawPanel = new Panel();
             WithdrawReturnButton = new Button();
-            BalancePanel = new Panel();
             BalanceReturnButton = new Button();
             BalanceLabel = new Label();
             LoginPanel.SuspendLayout();
             AccntScreenPanel.SuspendLayout();
-            WithdrawPanel.SuspendLayout();
             BalancePanel.SuspendLayout();
+            WithdrawPanel.SuspendLayout();
             SuspendLayout();
             // 
             // LoginPanel
@@ -175,6 +175,17 @@
             WithdrawButton.UseVisualStyleBackColor = true;
             WithdrawButton.Click += WithdrawButton_Click;
             // 
+            // BalancePanel
+            // 
+            BalancePanel.Controls.Add(WithdrawPanel);
+            BalancePanel.Controls.Add(BalanceReturnButton);
+            BalancePanel.Controls.Add(BalanceLabel);
+            BalancePanel.Dock = DockStyle.Fill;
+            BalancePanel.Location = new Point(0, 0);
+            BalancePanel.Name = "BalancePanel";
+            BalancePanel.Size = new Size(800, 450);
+            BalancePanel.TabIndex = 3;
+            // 
             // WithdrawPanel
             // 
             WithdrawPanel.Controls.Add(WithdrawReturnButton);
@@ -190,20 +201,9 @@
             WithdrawReturnButton.Name = "WithdrawReturnButton";
             WithdrawReturnButton.Size = new Size(75, 23);
             WithdrawReturnButton.TabIndex = 0;
-            WithdrawReturnButton.Text = "button1";
+            WithdrawReturnButton.Text = "Return";
             WithdrawReturnButton.UseVisualStyleBackColor = true;
             WithdrawReturnButton.Click += WithdrawReturnButton_Click;
-            // 
-            // BalancePanel
-            // 
-            BalancePanel.Controls.Add(WithdrawPanel);
-            BalancePanel.Controls.Add(BalanceReturnButton);
-            BalancePanel.Controls.Add(BalanceLabel);
-            BalancePanel.Dock = DockStyle.Fill;
-            BalancePanel.Location = new Point(0, 0);
-            BalancePanel.Name = "BalancePanel";
-            BalancePanel.Size = new Size(800, 450);
-            BalancePanel.TabIndex = 3;
             // 
             // BalanceReturnButton
             // 
@@ -237,8 +237,8 @@
             LoginPanel.ResumeLayout(false);
             LoginPanel.PerformLayout();
             AccntScreenPanel.ResumeLayout(false);
-            WithdrawPanel.ResumeLayout(false);
             BalancePanel.ResumeLayout(false);
+            WithdrawPanel.ResumeLayout(false);
             ResumeLayout(false);
         }
 
