@@ -46,7 +46,6 @@ namespace ATM_Simulator
             //Change Title properties
             TitleLabel.Text = "Bank of Dundee Computing";
             TitleLabel.Font = new Font("Arial", 24, FontStyle.Bold);
-            TitleLabel.ForeColor = Color.DarkBlue;
 
             //Centre title
             TitleLabel.Location = new Point(this.ClientSize.Width/2-(TitleLabel.Width/2), 10);
