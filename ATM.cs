@@ -11,13 +11,16 @@ namespace ATM_Simulator
         string currentState;
         int accntNumber;
         int withdrawAmount;
+        bool dataCon;
 
-        public ATM(Bank bank)
+
+        public ATM(Bank bank, bool dataCon)
         {
             InitializeComponent();
-
+            this.dataCon = dataCon;
             this.bank = bank;
             currentState = "accountLogin";
+
         }
 
         // method to allow only numbers to be typed
@@ -537,6 +540,7 @@ namespace ATM_Simulator
             };
             timer.Start();
         }
+
 
     }
 }

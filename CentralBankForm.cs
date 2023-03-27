@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace ATM_Simulator
 {
     public partial class CentralBankForm : Form
     {
+        Bank bank;
+        bool dataCon = false;
 
         public CentralBankForm(Bank bank)
         {
+            this.bank = bank;
             InitializeComponent();
 
             int windowWidth = 700;
@@ -62,10 +66,8 @@ namespace ATM_Simulator
             int logboxH = ((this.ClientSize.Height - LogTextBox.Height) / 2) + 160;
             LogTextBox.Location = new Point(logboxW, logboxH);
 
-            LogMessage("ATM 1 completed transaction.");
-            LogMessage("ATM 1 completed transaction.");
-            LogMessage("ATM 1 completed transaction.");
-            LogMessage("ATM 1 completed transaction.");
+            LogMessage("[INFO] Started central bank system");
+
         }
 
         public void LogMessage(string message)
@@ -95,12 +97,30 @@ namespace ATM_Simulator
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (dataCon == false)
+            {
+                dataCon = true;
+            }
+            else
+            {
+                dataCon= false;
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnShowATMs_Click(object sender, EventArgs e)
+        {
+            LogMessage("[INFO] Starting ATMs");
+
+            Thread Atm0 = new Thread(() => Application.Run(new ATM(bank, dataCon)));
+            Thread Atm1 = new Thread(() => Application.Run(new ATM(bank, dataCon)));
+
+            Atm0.Start();
+            Atm1.Start();
         }
     }
 }
