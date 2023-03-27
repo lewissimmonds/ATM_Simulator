@@ -680,11 +680,11 @@ namespace ATM_Simulator
         {
             // make the bank card image visible and return it to starting location if not there already
             BankCard.Visible = true;
-            BankCard.Location = new Point(796, -74);
+            BankCard.Location = new Point(796, -84);
 
             // set the target location, how many steps for it to be done in, and duration for the animation
-            int targetY = BankCard.Location.Y + 230;
-            int steps = 40;
+            int targetY = BankCard.Location.Y + 210;
+            int steps = 80;
             int duration = 1000;
 
             // variable for the starting position of the image, and how far to move per step
