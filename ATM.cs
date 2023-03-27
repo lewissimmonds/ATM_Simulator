@@ -16,6 +16,7 @@ namespace ATM_Simulator
         int accntNumber;
         int withdrawAmount;
         bool dataCon;
+        private SemaphoreSlim userSemaphore;
 
         // constructor for atm object
         public ATM(Bank bank, bool dataCon, TextBox textBox)
@@ -24,6 +25,7 @@ namespace ATM_Simulator
             this.dataCon = dataCon;
             this.bank = bank;
             this.textBox = textBox;
+            userSemaphore = new SemaphoreSlim(1);
 
             // current state is set to account login for the first screen
             // user is presented with
@@ -539,16 +541,47 @@ namespace ATM_Simulator
                 timer1.Tick += (object sender, EventArgs e) =>
                 {
 
-                    // variable to hold the users current balance and wait
-                    int currentBalance = bank.currentUser.balance;
-                    Thread.Sleep(500);
+                    if (!dataCon)
+                    {
+                        int currentBalance;
+                        try
+                        {
+                            // Wait for other threads to release the semaphore and acquire it for this thread
+                            userSemaphore.Wait();
 
-                    // take the amount to withdraw from the current balance and wait again
-                    currentBalance = currentBalance - withdrawAmount;
-                    Thread.Sleep(500);
+                            // Get the current balance and wait
+                            currentBalance = bank.currentUser.balance;
+                            Thread.Sleep(500);
 
-                    // update the balance held within the bank system with the new balance
-                    bank.currentUser.balance = currentBalance;
+                            // Calculate the new balance and wait again
+                            currentBalance = currentBalance - withdrawAmount;
+                            Thread.Sleep(500);
+
+                            // Update the balance held within the bank system with the new balance
+                            bank.currentUser.balance = currentBalance;
+                        }
+                        finally
+                        {
+                            // Release the semaphore when we're done
+                            userSemaphore.Release();
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
+                            // Wait for other threads to release the semaphore and acquire it for this thread
+                            userSemaphore.Wait();
+
+                            // Update the balance held within the bank system with the new balance
+                            bank.currentUser.balance -= withdrawAmount;
+                        }
+                        finally
+                        {
+                            // Release the semaphore when we're done
+                            userSemaphore.Release();
+                        }
+                    }
 
                     // display the users new balance
                     BalanceLabel.Text = "Your new balance is: £" + bank.currentUser.balance;
