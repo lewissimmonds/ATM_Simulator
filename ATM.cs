@@ -468,11 +468,11 @@ namespace ATM_Simulator
                 {
 
                     int tempBalance = bank.currentUser.balance;
-                    Thread.Sleep(1500);
+                    Thread.Sleep(500);
 
                     //reduce amount from temporary balance and wait
                     tempBalance = tempBalance - withdrawAmount;
-                    Thread.Sleep(1500);
+                    Thread.Sleep(500);
 
                     bank.currentUser.balance = tempBalance;
 
