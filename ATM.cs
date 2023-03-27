@@ -60,6 +60,9 @@ namespace ATM_Simulator
                         return;
                     }
 
+                    // method to show card being inserted
+                    InsertCard();
+
                     // get the account number from what user has typed
                     int accntNum = Convert.ToInt32(ScreenTextBox.Text);
 
@@ -67,15 +70,26 @@ namespace ATM_Simulator
                     if (bank.AccountExists(accntNum))
                     {
 
-                        // put this entered account number into a variable for later
-                        accntNumber = accntNum;
-                        ScreenTextBox.Text = "";
-                        ScreenTextBox.Focus();
-                        ScreenOutputTextBox.Text = "Please enter your pin number";
+                        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+                        timer.Interval = 2000;
+                        timer.Tick += (object sender, EventArgs e) =>
+                        {
 
-                        // change the state to pin login
-                        currentState = "pinLogin";
+                            // put this entered account number into a variable for later
+                            accntNumber = accntNum;
+                            ScreenTextBox.Text = "";
+                            ScreenTextBox.Focus();
+                            ScreenOutputTextBox.Text = "Please enter your pin number";
+
+                            timer.Stop();
+
+                        };
+                        timer.Start();
                     }
+
+                    // change the state to pin login
+                    currentState = "pinLogin";
+
                     break;
 
                 // case where atm wants pin number
@@ -336,6 +350,8 @@ namespace ATM_Simulator
                     BalanceLabel.Text = "Have a nice day!";
                     BalanceLabel.Visible = true;
 
+                    RemoveCard();
+
                     // timer to keep message on screen for 2 seconds
                     System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
                     timer.Interval = 2000;
@@ -563,7 +579,7 @@ namespace ATM_Simulator
 
             // make the money image visible and return it to starting location if not there already
             MoneyImage.Visible = true;
-            MoneyImage.Location = new Point(742, 263);
+            MoneyImage.Location = new Point(743, 351);
 
             // set the target location, how many steps for it to be done in, and duration for the animation
             int targetY = MoneyImage.Location.Y + 120;
@@ -609,7 +625,104 @@ namespace ATM_Simulator
             timer.Start();
         }
 
+        private void InsertCard()
+        {
+            // make the bank card image visible and return it to starting location if not there already
+            BankCard.Visible = true;
+            BankCard.Location = new Point(804, 138);
+
+            // set the target location, how many steps for it to be done in, and duration for the animation
+            int targetY = BankCard.Location.Y - 250;
+            int steps = 40;
+            int duration = 1000;
+
+            // variable for the starting position of the image, and how far to move per step
+            int startY = BankCard.Location.Y;
+            int deltaY = (targetY - startY) / steps;
+
+            // create a timer to update the image location for each step
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+            timer.Interval = duration / steps;
+            int stepCount = 0;
+            timer.Tick += (object sender, EventArgs e) =>
+            {
+                // calculate the new Y position for the image and set the new location to that
+                int newY = startY + (deltaY * stepCount);
+                BankCard.Location = new Point(BankCard.Location.X, newY);
+
+                // increment the step count
+                stepCount++;
+
+                // stop the timer when all steps have been done
+                if (stepCount >= steps)
+                {
+                    timer.Stop();
+
+                    // start a second timer to hide the image after a delay
+                    System.Windows.Forms.Timer timer2 = new System.Windows.Forms.Timer();
+                    timer2.Interval = 2000;
+                    timer2.Tick += (object s, EventArgs evt) =>
+                    {
+                        // hide the bank card image
+                        BankCard.Visible = false;
+                        timer2.Stop();
+                    };
+                    timer2.Start();
+                }
+            };
+            timer.Start();
+        }
+
+        private void RemoveCard()
+        {
+            // make the bank card image visible and return it to starting location if not there already
+            BankCard.Visible = true;
+            BankCard.Location = new Point(804, -74);
+
+            // set the target location, how many steps for it to be done in, and duration for the animation
+            int targetY = BankCard.Location.Y + 230;
+            int steps = 40;
+            int duration = 1000;
+
+            // variable for the starting position of the image, and how far to move per step
+            int startY = BankCard.Location.Y;
+            int deltaY = (targetY - startY) / steps;
+
+            // create a timer to update the image location for each step
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+            timer.Interval = duration / steps;
+            int stepCount = 0;
+            timer.Tick += (object sender, EventArgs e) =>
+            {
+                // calculate the new Y position for the image and set the new location to that
+                int newY = startY + (deltaY * stepCount);
+                BankCard.Location = new Point(BankCard.Location.X, newY);
+
+                // increment the step count
+                stepCount++;
+
+                // stop the timer when all steps have been done
+                if (stepCount >= steps)
+                {
+                    timer.Stop();
+
+                    // start a second timer to hide the image after a delay
+                    System.Windows.Forms.Timer timer2 = new System.Windows.Forms.Timer();
+                    timer2.Interval = 2000;
+                    timer2.Tick += (object s, EventArgs evt) =>
+                    {
+                        // hide the bank card image
+                        BankCard.Visible = false;
+                        timer2.Stop();
+                    };
+                    timer2.Start();
+                }
+            };
+            timer.Start();
+        }
 
     }
+
 }
+
 

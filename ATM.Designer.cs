@@ -72,12 +72,14 @@
             panel6 = new Panel();
             panel7 = new Panel();
             MoneyImage = new PictureBox();
+            BankCard = new PictureBox();
             ATMScreenPanel.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             panel5.SuspendLayout();
             panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MoneyImage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)BankCard).BeginInit();
             SuspendLayout();
             // 
             // ATMScreenPanel
@@ -489,7 +491,7 @@
             // panel1
             // 
             panel1.BackColor = SystemColors.ActiveCaptionText;
-            panel1.Location = new Point(4, 5);
+            panel1.Location = new Point(3, 10);
             panel1.Name = "panel1";
             panel1.Size = new Size(180, 13);
             panel1.TabIndex = 32;
@@ -498,7 +500,7 @@
             // 
             panel2.BackColor = Color.FromArgb(64, 64, 64);
             panel2.Controls.Add(panel1);
-            panel2.Location = new Point(47, 33);
+            panel2.Location = new Point(48, 135);
             panel2.Name = "panel2";
             panel2.Size = new Size(189, 23);
             panel2.TabIndex = 33;
@@ -506,7 +508,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(112, 15);
+            label1.Location = new Point(108, 108);
             label1.Name = "label1";
             label1.Size = new Size(64, 15);
             label1.TabIndex = 34;
@@ -517,9 +519,9 @@
             panel3.BackColor = Color.Gray;
             panel3.Controls.Add(panel2);
             panel3.Controls.Add(label1);
-            panel3.Location = new Point(735, 67);
+            panel3.Location = new Point(733, -10);
             panel3.Name = "panel3";
-            panel3.Size = new Size(284, 89);
+            panel3.Size = new Size(284, 157);
             panel3.TabIndex = 35;
             // 
             // label2
@@ -553,7 +555,7 @@
             panel7.BackColor = Color.Gray;
             panel7.Controls.Add(label2);
             panel7.Controls.Add(panel5);
-            panel7.Location = new Point(732, 220);
+            panel7.Location = new Point(733, 308);
             panel7.Name = "panel7";
             panel7.Size = new Size(284, 187);
             panel7.TabIndex = 36;
@@ -561,12 +563,24 @@
             // MoneyImage
             // 
             MoneyImage.Image = (Image)resources.GetObject("MoneyImage.Image");
-            MoneyImage.Location = new Point(742, 263);
+            MoneyImage.Location = new Point(743, 351);
             MoneyImage.Name = "MoneyImage";
             MoneyImage.Size = new Size(267, 138);
             MoneyImage.SizeMode = PictureBoxSizeMode.Zoom;
             MoneyImage.TabIndex = 37;
             MoneyImage.TabStop = false;
+            // 
+            // BankCard
+            // 
+            BankCard.BackColor = Color.Transparent;
+            BankCard.Image = (Image)resources.GetObject("BankCard.Image");
+            BankCard.Location = new Point(804, 138);
+            BankCard.Name = "BankCard";
+            BankCard.Size = new Size(143, 228);
+            BankCard.SizeMode = PictureBoxSizeMode.Zoom;
+            BankCard.TabIndex = 38;
+            BankCard.TabStop = false;
+            BankCard.Visible = false;
             // 
             // ATM
             // 
@@ -574,7 +588,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gray;
             ClientSize = new Size(1112, 624);
-            Controls.Add(panel7);
             Controls.Add(panel3);
             Controls.Add(Option8Button);
             Controls.Add(Option7Button);
@@ -598,6 +611,8 @@
             Controls.Add(CancelButton);
             Controls.Add(Num1Button);
             Controls.Add(ATMScreenPanel);
+            Controls.Add(BankCard);
+            Controls.Add(panel7);
             Controls.Add(MoneyImage);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -612,6 +627,7 @@
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)MoneyImage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)BankCard).EndInit();
             ResumeLayout(false);
         }
 
@@ -660,5 +676,6 @@
         private Label label2;
         private Panel panel7;
         private PictureBox MoneyImage;
+        private PictureBox BankCard;
     }
 }
