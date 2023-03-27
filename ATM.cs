@@ -7,16 +7,22 @@ namespace ATM_Simulator
 {
     public partial class ATM : Form
     {
+
+        // declare variables
         private Bank bank;
         string currentState;
         int accntNumber;
         int withdrawAmount;
 
+        // constructor for atm object
         public ATM(Bank bank)
         {
             InitializeComponent();
 
             this.bank = bank;
+
+            // current state is set to account login for the first screen
+            // user is presented with
             currentState = "accountLogin";
         }
 
@@ -41,7 +47,7 @@ namespace ATM_Simulator
                 // case where atm wants account number
                 case "accountLogin":
 
-                    // if the user hasn't entered a 6-digit number
+                    // error handling for if user enters an account number that isn't 6-digits
                     if (ScreenTextBox.Text.Length != 6)
                     {
 
@@ -52,8 +58,10 @@ namespace ATM_Simulator
                         return;
                     }
 
+                    // get the account number from what user has typed
                     int accntNum = Convert.ToInt32(ScreenTextBox.Text);
 
+                    // if a bank account with this account number is found
                     if (bank.AccountExists(accntNum))
                     {
 
@@ -70,6 +78,8 @@ namespace ATM_Simulator
 
                 // case where atm wants pin number
                 case "pinLogin":
+
+                    // error handling for if user enters a pin number that isn't 4-digits
                     if (ScreenTextBox.Text.Length != 4)
                     {
                         MessageBox.Show("Please enter a 4-digit pin number");
@@ -140,9 +150,9 @@ namespace ATM_Simulator
                 case ("customAmount"):
 
                     ScreenOutputTextBox.Text = "How much would you like to withdraw?";
-                    Option1Label.Text = "£500";
-                    Option2Label.Text = "£250";
-                    Option3Label.Text = "£100";
+                    Option1Label.Text = "ï¿½500";
+                    Option2Label.Text = "ï¿½250";
+                    Option3Label.Text = "ï¿½100";
                     Option1Label.Visible = true;
                     Option2Label.Visible = true;
                     Option3Label.Visible = true;
@@ -234,9 +244,9 @@ namespace ATM_Simulator
                 case ("loggedIn"):
 
                     ScreenOutputTextBox.Text = "How much would you like to withdraw?";
-                    Option1Label.Text = "£500";
-                    Option2Label.Text = "£250";
-                    Option3Label.Text = "£100";
+                    Option1Label.Text = "ï¿½500";
+                    Option2Label.Text = "ï¿½250";
+                    Option3Label.Text = "ï¿½100";
                     Option4Label.Visible = true;
                     Option5Label.Visible = true;
                     Option6Label.Visible = true;
@@ -261,7 +271,7 @@ namespace ATM_Simulator
                 case ("loggedIn"):
 
                     BalanceLabel.Visible = true;
-                    BalanceLabel.Text = "Your balance is: £" + bank.currentUser.balance.ToString();
+                    BalanceLabel.Text = "Your balance is: ï¿½" + bank.currentUser.balance.ToString();
                     ScreenOutputTextBox.Visible = false;
                     Option1Label.Visible = false;
                     Option2Label.Visible = false;
@@ -399,14 +409,18 @@ namespace ATM_Simulator
             }
         }
 
+        // method to execute the logic for money withdrawal
         private void WithdrawingLogic(int withdrawalAmount)
         {
 
-
+            // variable for the amount to withdraw
             withdrawAmount = withdrawalAmount;
 
+            // can't withdraw funds you don't have 
             if (withdrawAmount > bank.currentUser.balance)
             {
+
+                // display an error to signify this
                 WithdrawWarningLabel.Visible = true;
                 ScreenTextBox.Visible = false;
                 Option1Label.Visible = false;
@@ -420,7 +434,8 @@ namespace ATM_Simulator
                 Option8Label.Visible = false;
                 ScreenOutputTextBox.Visible = false;
 
-                // using a timer to pause execution of the next lines of code
+                // using a timer to pause execution of the next lines of code,
+                // and execute after 2 seconds
                 System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
                 timer.Interval = 2000;
                 timer.Tick += (object sender, EventArgs e) =>
@@ -446,6 +461,8 @@ namespace ATM_Simulator
             }
             else
             {
+
+                // display to user that cash is being dispensed
                 BalanceLabel.Visible = true;
                 BalanceLabel.Location = new Point(100, 145);
                 BalanceLabel.Text = "Dispensing cash...";
@@ -459,24 +476,26 @@ namespace ATM_Simulator
                 Option6Label.Visible = false;
                 Option7Label.Visible = false;
                 Option8Label.Visible = false;
-
                 
-
+                // another timer to simulate calcultations taking place
                 System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
                 timer1.Interval = 2000;
                 timer1.Tick += (object sender, EventArgs e) =>
                 {
 
-                    int tempBalance = bank.currentUser.balance;
+                    // variable to hold the users current balance and wait
+                    int currentBalance = bank.currentUser.balance;
                     Thread.Sleep(500);
 
-                    //reduce amount from temporary balance and wait
-                    tempBalance = tempBalance - withdrawAmount;
+                    // take the amount to withdraw from the current balance and wait again
+                    currentBalance = currentBalance - withdrawAmount;
                     Thread.Sleep(500);
 
-                    bank.currentUser.balance = tempBalance;
+                    // update the balance held within the bank system with the new balance
+                    bank.currentUser.balance = currentBalance;
 
-                    BalanceLabel.Text = "Your new balance is: £" + bank.currentUser.balance;
+                    // display the users new balance
+                    BalanceLabel.Text = "Your new balance is: ï¿½" + bank.currentUser.balance;
                     BalanceLabel.Location = new Point(80, 145);
                     BalanceLabel.Visible = true;
                     timer1.Stop();
@@ -485,6 +504,8 @@ namespace ATM_Simulator
                     timer2.Interval = 2000;
                     timer2.Tick += (object sender, EventArgs e) =>
                     {
+
+                        // return user to options screen
                         BalanceLabel.Visible = false;
                         ScreenOutputTextBox.Visible = true;
                         ScreenOutputTextBox.Text = "Please select the option you'd like to do";
