@@ -463,9 +463,6 @@ namespace ATM_Simulator
                 Option7Label.Visible = false;
                 Option8Label.Visible = false;
 
-
-                bank.currentUser.balance -= withdrawAmount;
-
                 System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
                 timer1.Interval = 2000;
                 timer1.Tick += (object sender, EventArgs e) =>
