@@ -555,7 +555,7 @@
             panel7.Controls.Add(panel5);
             panel7.Location = new Point(732, 220);
             panel7.Name = "panel7";
-            panel7.Size = new Size(284, 188);
+            panel7.Size = new Size(284, 187);
             panel7.TabIndex = 36;
             // 
             // MoneyImage
