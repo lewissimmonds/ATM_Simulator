@@ -9,18 +9,21 @@ namespace ATM_Simulator
     {
 
         // declare variables
+        private CentralBankForm _centralBankForm;
         private Bank bank;
+        private TextBox textBox;
         string currentState;
         int accntNumber;
         int withdrawAmount;
         bool dataCon;
 
         // constructor for atm object
-        public ATM(Bank bank, bool dataCon)
+        public ATM(Bank bank, bool dataCon, TextBox textBox)
         {
             InitializeComponent();
             this.dataCon = dataCon;
             this.bank = bank;
+            this.textBox = textBox;
 
             // current state is set to account login for the first screen
             // user is presented with
@@ -54,11 +57,15 @@ namespace ATM_Simulator
                     {
 
                         // have a popup to signify error
-                        MessageBox.Show("ERROR: lease enter a 6-digit account number");
+                        MessageBox.Show("ERROR: please enter a 6-digit account number");
+                        LogMessage("[INFO] Failed login");
                         ScreenTextBox.Text = "";
                         ScreenTextBox.Focus();
                         return;
                     }
+
+                    LogMessage("[INFO] Account found");
+
 
                     // method to show card being inserted
                     InsertCard();
@@ -99,6 +106,7 @@ namespace ATM_Simulator
                     if (ScreenTextBox.Text.Length != 4)
                     {
                         MessageBox.Show("Please enter a 4-digit pin number");
+                        LogMessage("[INFO] Failed login");
                         ScreenTextBox.Text = "";
                         ScreenTextBox.Focus();
                         return;
@@ -117,6 +125,7 @@ namespace ATM_Simulator
                         Option2Label.Visible = true;
                         Option3Label.Visible = true;
                         ScreenTextBox.Visible = false;
+                        LogMessage("[INFO] Successful login");
                         currentState = "loggedIn";
                     }
                     break;
@@ -350,6 +359,7 @@ namespace ATM_Simulator
                     BalanceLabel.Text = "Have a nice day!";
                     BalanceLabel.Visible = true;
 
+                    LogMessage("[INFO] Successfully logged out");
                     RemoveCard();
 
                     // timer to keep message on screen for 2 seconds
@@ -571,6 +581,9 @@ namespace ATM_Simulator
                 };
                 timer1.Start();
             }
+
+            LogMessage("[INFO] £" + withdrawAmount + " withdrawn");
+
         }
 
         //method to "dispense" cash from atm by moving image
@@ -724,7 +737,13 @@ namespace ATM_Simulator
             timer.Start();
         }
 
+        public void LogMessage(string message)
+        {
+            textBox.AppendText(message + Environment.NewLine);
+        }
+
     }
+
 
 }
 
