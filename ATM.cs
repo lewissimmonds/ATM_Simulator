@@ -625,6 +625,8 @@ namespace ATM_Simulator
             timer.Start();
         }
 
+        // method to simulate the card entering the atm
+        // card image gotten from https://www.psdgraphics.com/psd/credit-card-template/
         private void InsertCard()
         {
             // make the bank card image visible and return it to starting location if not there already
@@ -673,6 +675,7 @@ namespace ATM_Simulator
             timer.Start();
         }
 
+        // method to simulate card being removed from atm
         private void RemoveCard()
         {
             // make the bank card image visible and return it to starting location if not there already
