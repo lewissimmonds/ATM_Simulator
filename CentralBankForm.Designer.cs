@@ -96,6 +96,7 @@
             this.btnShowATMs.TabIndex = 5;
             this.btnShowATMs.Text = "Show ATMs";
             this.btnShowATMs.UseVisualStyleBackColor = true;
+            this.btnShowATMs.Click += new System.EventHandler(this.btnShowATMs_Click);
             // 
             // LogTextBox
             // 
