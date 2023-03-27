@@ -460,12 +460,22 @@ namespace ATM_Simulator
                 Option7Label.Visible = false;
                 Option8Label.Visible = false;
 
-                bank.currentUser.balance -= withdrawAmount;
+                
 
                 System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
                 timer1.Interval = 2000;
                 timer1.Tick += (object sender, EventArgs e) =>
                 {
+
+                    int tempBalance = bank.currentUser.balance;
+                    Thread.Sleep(500);
+
+                    //reduce amount from temporary balance and wait
+                    tempBalance = tempBalance - withdrawAmount;
+                    Thread.Sleep(500);
+
+                    bank.currentUser.balance = tempBalance;
+
                     BalanceLabel.Text = "Your new balance is: £" + bank.currentUser.balance;
                     BalanceLabel.Location = new Point(80, 145);
                     BalanceLabel.Visible = true;
@@ -529,45 +539,6 @@ namespace ATM_Simulator
             };
             timer.Start();
         }
-
-
-
-
-
-
-
-
-        /*        // method to check if the login details are valid when the login button is clicked
-                private void LoginButton_Click(object sender, EventArgs e)
-                {
-                    // check if account number and pin number text boxes are empty
-                    if (string.IsNullOrWhiteSpace(ScreenTextBox.Text) || string.IsNullOrWhiteSpace(PinTextBox.Text))
-                    {
-                        MessageBox.Show("Account details incorrect or account does not exist");
-                        return;
-                    }
-
-                    // get the contents of the account number and pin number fields, 
-                    // and convert to ints
-                    int accntNum = Convert.ToInt32(ScreenTextBox.Text);
-                    int pinNum = Convert.ToInt32(PinTextBox.Text);
-
-                    // if account details are valid
-                    if (bank.CheckPin(accntNum, pinNum))
-                    {
-
-                        // display the account balance in a label
-
-
-                        // hide the login screen
-                        // AccntScreenPanel.BringToFront();
-                        // AccntScreenPanel.Visible = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Account details incorrect or account does not exist");
-                    }
-                }*/
 
     }
 }
