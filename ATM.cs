@@ -21,11 +21,6 @@ namespace ATM_Simulator
             this.bank = bank;
             currentState = "accountLogin";
 
-            Thread Atm0 = new Thread(() => Application.Run(new ATM(bank, dataCon)));
-            Thread Atm1 = new Thread(() => Application.Run(new ATM(bank, dataCon)));
-
-            Atm0.Start();
-            Atm1.Start();
         }
 
         // method to allow only numbers to be typed
@@ -543,6 +538,11 @@ namespace ATM_Simulator
         private void ATM_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void ATM_Load_1(object sender, EventArgs e)
+        {
+
         }
 
 
