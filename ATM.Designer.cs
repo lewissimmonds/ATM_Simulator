@@ -574,9 +574,9 @@
             // 
             BankCard.BackColor = Color.Transparent;
             BankCard.Image = (Image)resources.GetObject("BankCard.Image");
-            BankCard.Location = new Point(804, 138);
+            BankCard.Location = new Point(796, 137);
             BankCard.Name = "BankCard";
-            BankCard.Size = new Size(143, 228);
+            BankCard.Size = new Size(157, 272);
             BankCard.SizeMode = PictureBoxSizeMode.Zoom;
             BankCard.TabIndex = 38;
             BankCard.TabStop = false;

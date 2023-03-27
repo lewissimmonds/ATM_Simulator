@@ -588,7 +588,7 @@ namespace ATM_Simulator
 
             // variable for the starting position of the image, and how far to move per step
             int startY = MoneyImage.Location.Y;
-            int deltaY = (targetY - startY) / steps;
+            int stepY = (targetY - startY) / steps;
 
             // create a timer to update the image location for each step
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
@@ -598,7 +598,7 @@ namespace ATM_Simulator
             {
 
                 // calculate the new Y position for the image and set the new location to that
-                int newY = startY + (deltaY * stepCount);
+                int newY = startY + (stepY * stepCount);
                 MoneyImage.Location = new Point(MoneyImage.Location.X, newY);
 
                 // increment the step count
@@ -625,20 +625,22 @@ namespace ATM_Simulator
             timer.Start();
         }
 
+        // method to simulate the card entering the atm
+        // card image gotten from https://www.psdgraphics.com/psd/credit-card-template/
         private void InsertCard()
         {
             // make the bank card image visible and return it to starting location if not there already
             BankCard.Visible = true;
-            BankCard.Location = new Point(804, 138);
+            BankCard.Location = new Point(796, 137);
 
             // set the target location, how many steps for it to be done in, and duration for the animation
-            int targetY = BankCard.Location.Y - 250;
-            int steps = 40;
+            int targetY = BankCard.Location.Y - 350;
+            int steps = 80;
             int duration = 1000;
 
             // variable for the starting position of the image, and how far to move per step
             int startY = BankCard.Location.Y;
-            int deltaY = (targetY - startY) / steps;
+            int stepY = (targetY - startY) / steps;
 
             // create a timer to update the image location for each step
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
@@ -647,7 +649,7 @@ namespace ATM_Simulator
             timer.Tick += (object sender, EventArgs e) =>
             {
                 // calculate the new Y position for the image and set the new location to that
-                int newY = startY + (deltaY * stepCount);
+                int newY = startY + (stepY * stepCount);
                 BankCard.Location = new Point(BankCard.Location.X, newY);
 
                 // increment the step count
@@ -673,11 +675,12 @@ namespace ATM_Simulator
             timer.Start();
         }
 
+        // method to simulate card being removed from atm
         private void RemoveCard()
         {
             // make the bank card image visible and return it to starting location if not there already
             BankCard.Visible = true;
-            BankCard.Location = new Point(804, -74);
+            BankCard.Location = new Point(796, -74);
 
             // set the target location, how many steps for it to be done in, and duration for the animation
             int targetY = BankCard.Location.Y + 230;
@@ -686,7 +689,7 @@ namespace ATM_Simulator
 
             // variable for the starting position of the image, and how far to move per step
             int startY = BankCard.Location.Y;
-            int deltaY = (targetY - startY) / steps;
+            int stepY = (targetY - startY) / steps;
 
             // create a timer to update the image location for each step
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
@@ -695,7 +698,7 @@ namespace ATM_Simulator
             timer.Tick += (object sender, EventArgs e) =>
             {
                 // calculate the new Y position for the image and set the new location to that
-                int newY = startY + (deltaY * stepCount);
+                int newY = startY + (stepY * stepCount);
                 BankCard.Location = new Point(BankCard.Location.X, newY);
 
                 // increment the step count
