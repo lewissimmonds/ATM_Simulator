@@ -12,6 +12,7 @@ namespace ATM_Simulator
         //Creates a list of accounts
         public List<Account> accounts = new List<Account>();
         public Account currentUser;
+        public ATM atm;
 
         public Bank() { 
             TestingMethod();
