@@ -116,8 +116,8 @@ namespace ATM_Simulator
         {
             LogMessage("[INFO] Starting ATMs");
 
-            Thread Atm0 = new Thread(() => Application.Run(new ATM(bank, dataCon)));
-            Thread Atm1 = new Thread(() => Application.Run(new ATM(bank, dataCon)));
+            Thread Atm0 = new Thread(() => Application.Run(new ATM(bank, dataCon, LogTextBox)));
+            Thread Atm1 = new Thread(() => Application.Run(new ATM(bank, dataCon, LogTextBox)));
 
             Atm0.Start();
             Atm1.Start();
