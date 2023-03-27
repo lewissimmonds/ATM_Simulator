@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ATM));
             ATMScreenPanel = new Panel();
             BalanceLabel = new Label();
             Option8Label = new Label();
@@ -66,18 +67,17 @@
             panel2 = new Panel();
             label1 = new Label();
             panel3 = new Panel();
-            panel4 = new Panel();
             label2 = new Label();
             panel5 = new Panel();
             panel6 = new Panel();
-            MoneyPanel = new Panel();
             panel7 = new Panel();
+            MoneyImage = new PictureBox();
             ATMScreenPanel.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
-            panel4.SuspendLayout();
             panel5.SuspendLayout();
             panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)MoneyImage).BeginInit();
             SuspendLayout();
             // 
             // ATMScreenPanel
@@ -517,24 +517,15 @@
             panel3.BackColor = Color.Gray;
             panel3.Controls.Add(panel2);
             panel3.Controls.Add(label1);
-            panel3.Location = new Point(735, 159);
+            panel3.Location = new Point(735, 67);
             panel3.Name = "panel3";
             panel3.Size = new Size(284, 89);
             panel3.TabIndex = 35;
             // 
-            // panel4
-            // 
-            panel4.BackColor = Color.Gray;
-            panel4.Controls.Add(label2);
-            panel4.Location = new Point(695, 343);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(371, 89);
-            panel4.TabIndex = 35;
-            // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(134, 15);
+            label2.Location = new Point(87, 140);
             label2.Name = "label2";
             label2.Size = new Size(101, 15);
             label2.TabIndex = 34;
@@ -544,7 +535,7 @@
             // 
             panel5.BackColor = Color.FromArgb(64, 64, 64);
             panel5.Controls.Add(panel6);
-            panel5.Location = new Point(3, 110);
+            panel5.Location = new Point(2, 166);
             panel5.Name = "panel5";
             panel5.Size = new Size(281, 20);
             panel5.TabIndex = 33;
@@ -552,27 +543,30 @@
             // panel6
             // 
             panel6.BackColor = SystemColors.ActiveCaptionText;
-            panel6.Location = new Point(4, 5);
+            panel6.Location = new Point(5, 11);
             panel6.Name = "panel6";
             panel6.Size = new Size(273, 10);
             panel6.TabIndex = 32;
             // 
-            // MoneyPanel
-            // 
-            MoneyPanel.BackColor = Color.FromArgb(128, 255, 255);
-            MoneyPanel.Location = new Point(745, 276);
-            MoneyPanel.Name = "MoneyPanel";
-            MoneyPanel.Size = new Size(273, 105);
-            MoneyPanel.TabIndex = 36;
-            // 
             // panel7
             // 
             panel7.BackColor = Color.Gray;
+            panel7.Controls.Add(label2);
             panel7.Controls.Add(panel5);
-            panel7.Location = new Point(739, 266);
+            panel7.Location = new Point(732, 220);
             panel7.Name = "panel7";
-            panel7.Size = new Size(284, 122);
+            panel7.Size = new Size(284, 188);
             panel7.TabIndex = 36;
+            // 
+            // MoneyImage
+            // 
+            MoneyImage.Image = (Image)resources.GetObject("MoneyImage.Image");
+            MoneyImage.Location = new Point(742, 263);
+            MoneyImage.Name = "MoneyImage";
+            MoneyImage.Size = new Size(267, 138);
+            MoneyImage.SizeMode = PictureBoxSizeMode.Zoom;
+            MoneyImage.TabIndex = 37;
+            MoneyImage.TabStop = false;
             // 
             // ATM
             // 
@@ -581,8 +575,6 @@
             BackColor = Color.Gray;
             ClientSize = new Size(1112, 624);
             Controls.Add(panel7);
-            Controls.Add(MoneyPanel);
-            Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(Option8Button);
             Controls.Add(Option7Button);
@@ -606,6 +598,7 @@
             Controls.Add(CancelButton);
             Controls.Add(Num1Button);
             Controls.Add(ATMScreenPanel);
+            Controls.Add(MoneyImage);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "ATM";
@@ -615,10 +608,10 @@
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
             panel5.ResumeLayout(false);
             panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)MoneyImage).EndInit();
             ResumeLayout(false);
         }
 
@@ -662,11 +655,10 @@
         private Panel panel2;
         private Label label1;
         private Panel panel3;
-        private Panel panel4;
         private Panel panel5;
         private Panel panel6;
         private Label label2;
-        private Panel MoneyPanel;
         private Panel panel7;
+        private PictureBox MoneyImage;
     }
 }

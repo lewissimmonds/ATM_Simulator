@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Transactions;
+using System.Windows.Forms;
 
 namespace ATM_Simulator
 {
@@ -496,22 +497,37 @@ namespace ATM_Simulator
 
         private void DispenseCash()
         {
-            int startPos = MoneyPanel.Location.Y;
-            int endPos = startPos + 110;
-            int stepSize = 5;
-            int interval = 20;
-            int totalTime = 1000;
+            int targetY = MoneyImage.Location.Y + 120; // the target Y position after moving down by 100 pixels
+            int steps = 40; // the number of steps to take to reach the target position
+            int duration = 2000; // the duration in milliseconds of the animation
 
-            for (int t = 0; t < totalTime; t += interval)
+            int startY = MoneyImage.Location.Y;
+            int deltaY = (targetY - startY) / steps;
+
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+            timer.Interval = duration / steps;
+            int stepCount = 0;
+            timer.Tick += (object sender, EventArgs e) =>
             {
-                int currPos = startPos + (int)((endPos - startPos) * ((double)t / totalTime));
-                MoneyPanel.Top = currPos;
-                Thread.Sleep(interval);
-            }
+                int newY = startY + (deltaY * stepCount);
+                MoneyImage.Location = new Point(MoneyImage.Location.X, newY);
 
-            Thread.Sleep(2000);
-            MoneyPanel.Visible = false;
-
+                stepCount++;
+                if (stepCount >= steps)
+                {
+                    timer.Stop();
+                    // Start a second timer to hide the image after a delay
+                    System.Windows.Forms.Timer hideTimer = new System.Windows.Forms.Timer();
+                    hideTimer.Interval = 2000;
+                    hideTimer.Tick += (object s, EventArgs evt) =>
+                    {
+                        MoneyImage.Visible = false;
+                        hideTimer.Stop();
+                    };
+                    hideTimer.Start();
+                }
+            };
+            timer.Start();
         }
 
 
