@@ -21,7 +21,6 @@ namespace ATM_Simulator
             //Create central computer thread
             Thread CenComp = new Thread(() => Application.Run(new CentralBankForm(bank))); // REPLACE WITH CENTRAL COMPUTER APP!!!!!!!
 
-            //Start the thread
             CenComp.Start();
 
             

@@ -143,9 +143,9 @@ namespace ATM_Simulator
                 case ("customAmount"):
 
                     ScreenOutputTextBox.Text = "How much would you like to withdraw?";
-                    Option1Label.Text = "£500";
-                    Option2Label.Text = "£250";
-                    Option3Label.Text = "£100";
+                    Option1Label.Text = "Â£500";
+                    Option2Label.Text = "Â£250";
+                    Option3Label.Text = "Â£100";
                     Option1Label.Visible = true;
                     Option2Label.Visible = true;
                     Option3Label.Visible = true;
@@ -237,9 +237,9 @@ namespace ATM_Simulator
                 case ("loggedIn"):
 
                     ScreenOutputTextBox.Text = "How much would you like to withdraw?";
-                    Option1Label.Text = "£500";
-                    Option2Label.Text = "£250";
-                    Option3Label.Text = "£100";
+                    Option1Label.Text = "Â£500";
+                    Option2Label.Text = "Â£250";
+                    Option3Label.Text = "Â£100";
                     Option4Label.Visible = true;
                     Option5Label.Visible = true;
                     Option6Label.Visible = true;
@@ -264,7 +264,7 @@ namespace ATM_Simulator
                 case ("loggedIn"):
 
                     BalanceLabel.Visible = true;
-                    BalanceLabel.Text = "Your balance is: £" + bank.currentUser.balance.ToString();
+                    BalanceLabel.Text = "Your balance is: Â£" + bank.currentUser.balance.ToString();
                     ScreenOutputTextBox.Visible = false;
                     Option1Label.Visible = false;
                     Option2Label.Visible = false;
@@ -464,14 +464,23 @@ namespace ATM_Simulator
                 Option8Label.Visible = false;
 
 
-                Thread.Sleep(1000);
                 bank.currentUser.balance -= withdrawAmount;
 
                 System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
                 timer1.Interval = 2000;
                 timer1.Tick += (object sender, EventArgs e) =>
                 {
-                    BalanceLabel.Text = "Your new balance is: £" + bank.currentUser.balance;
+
+                    int tempBalance = bank.currentUser.balance;
+                    Thread.Sleep(500);
+
+                    //reduce amount from temporary balance and wait
+                    tempBalance = tempBalance - withdrawAmount;
+                    Thread.Sleep(500);
+
+                    bank.currentUser.balance = tempBalance;
+
+                    BalanceLabel.Text = "Your new balance is: Â£" + bank.currentUser.balance;
                     BalanceLabel.Location = new Point(80, 145);
                     BalanceLabel.Visible = true;
                     timer1.Stop();
@@ -535,54 +544,6 @@ namespace ATM_Simulator
             timer.Start();
         }
 
-        private void ATM_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void ATM_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-
-
-
-
-
-        /*        // method to check if the login details are valid when the login button is clicked
-                private void LoginButton_Click(object sender, EventArgs e)
-                {
-                    // check if account number and pin number text boxes are empty
-                    if (string.IsNullOrWhiteSpace(ScreenTextBox.Text) || string.IsNullOrWhiteSpace(PinTextBox.Text))
-                    {
-                        MessageBox.Show("Account details incorrect or account does not exist");
-                        return;
-                    }
-
-                    // get the contents of the account number and pin number fields, 
-                    // and convert to ints
-                    int accntNum = Convert.ToInt32(ScreenTextBox.Text);
-                    int pinNum = Convert.ToInt32(PinTextBox.Text);
-
-                    // if account details are valid
-                    if (bank.CheckPin(accntNum, pinNum))
-                    {
-
-                        // display the account balance in a label
-
-
-                        // hide the login screen
-                        // AccntScreenPanel.BringToFront();
-                        // AccntScreenPanel.Visible = true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Account details incorrect or account does not exist");
-                    }
-                }*/
 
     }
 }
