@@ -16,7 +16,7 @@ namespace ATM_Simulator
         bool dataCon;
 
         // constructor for atm object
-        public ATM(Bank bank)
+        public ATM(Bank bank, bool dataCon)
         {
             InitializeComponent();
             this.dataCon = dataCon;
@@ -90,10 +90,14 @@ namespace ATM_Simulator
                         return;
                     }
 
+                    // get the pin number from what user has typed
                     int pinNum = Convert.ToInt32(ScreenTextBox.Text);
 
+                    // if the account pin match
                     if (bank.CheckPin(accntNumber, pinNum))
                     {
+
+                        // display to the user the options
                         ScreenOutputTextBox.Text = "Please select the option you'd like to do";
                         Option1Label.Visible = true;
                         Option2Label.Visible = true;
@@ -109,28 +113,37 @@ namespace ATM_Simulator
 
                 case "customAmount":
 
+                    // store the amount the user wants to withdraw in a variable
                     int withdrawAmount = Convert.ToInt32(ScreenTextBox.Text);
 
+                    // pass that into a method which deals with the withdrawing logic
                     WithdrawingLogic(withdrawAmount);
-
-
                     break;
             }
         }
 
+        // method to deal with when the clear button is clicked
         private void ClearButton_Click(object sender, EventArgs e)
         {
+
+            // clear the textbox of any text and return focus to it
             ScreenTextBox.Text = "";
             ScreenTextBox.Select(ScreenTextBox.Text.Length, 0);
             ScreenTextBox.Focus();
         }
 
+        // method to deal with when the cancel button is clicked
         private void CancelButton_Click(object sender, EventArgs e)
         {
+
+            // case-switch to deal with the current state the machine is in
             switch (currentState)
             {
+
+                // if the state is withdrawing
                 case ("withdrawing"):
 
+                    // return to the options menu
                     ScreenOutputTextBox.Visible = true;
                     ScreenOutputTextBox.Text = "Please select the option you'd like to do";
                     Option1Label.Visible = true;
@@ -149,8 +162,10 @@ namespace ATM_Simulator
 
                     break;
 
+                // if the case is when a custom amount is being input
                 case ("customAmount"):
 
+                    // return the user to the amount to withdraw menu
                     ScreenOutputTextBox.Text = "How much would you like to withdraw?";
                     Option1Label.Text = "�500";
                     Option2Label.Text = "�250";
@@ -169,8 +184,11 @@ namespace ATM_Simulator
             }
         }
 
+        //various methods to deal with the number buttons being clicked
         private void Num1Button_Click(object sender, EventArgs e)
         {
+
+            // add a one to the textbox and return focus to it
             ScreenTextBox.Text += "1";
             ScreenTextBox.Select(ScreenTextBox.Text.Length, 0);
             ScreenTextBox.Focus();
@@ -239,16 +257,19 @@ namespace ATM_Simulator
             ScreenTextBox.Focus();
         }
 
+
+        // methods to deal with when the user clicks the option buttons around the atm screen
         private void Option1Button_Click(object sender, EventArgs e)
         {
             switch (currentState)
             {
                 case ("loggedIn"):
 
+                    // user wants to withdraw, display the amounts available 
                     ScreenOutputTextBox.Text = "How much would you like to withdraw?";
-                    Option1Label.Text = "�500";
-                    Option2Label.Text = "�250";
-                    Option3Label.Text = "�100";
+                    Option1Label.Text = "£500";
+                    Option2Label.Text = "£250";
+                    Option3Label.Text = "£100";
                     Option4Label.Visible = true;
                     Option5Label.Visible = true;
                     Option6Label.Visible = true;
@@ -260,6 +281,7 @@ namespace ATM_Simulator
 
                 case ("withdrawing"):
 
+                    // withdraw the amount clicked, in this case option 1 is £500
                     WithdrawingLogic(500);
 
                     break;
@@ -272,8 +294,9 @@ namespace ATM_Simulator
             {
                 case ("loggedIn"):
 
+                    // display the balance to the user
                     BalanceLabel.Visible = true;
-                    BalanceLabel.Text = "Your balance is: �" + bank.currentUser.balance.ToString();
+                    BalanceLabel.Text = "Your balance is: £" + bank.currentUser.balance.ToString();
                     ScreenOutputTextBox.Visible = false;
                     Option1Label.Visible = false;
                     Option2Label.Visible = false;
@@ -299,6 +322,7 @@ namespace ATM_Simulator
             {
                 case ("loggedIn"):
 
+                    // "log the user out" by hiding all visible elements on screen
                     Option1Label.Visible = false;
                     Option2Label.Visible = false;
                     Option3Label.Visible = false;
@@ -312,11 +336,13 @@ namespace ATM_Simulator
                     BalanceLabel.Text = "Have a nice day!";
                     BalanceLabel.Visible = true;
 
+                    // timer to keep message on screen for 2 seconds
                     System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
                     timer.Interval = 2000;
                     timer.Tick += (object sender, EventArgs e) =>
                     {
 
+                        // take user back to screen to input account number
                         BalanceLabel.Visible = false;
                         ScreenOutputTextBox.Visible = true;
                         ScreenOutputTextBox.Text = "Please enter your account number";
@@ -346,6 +372,7 @@ namespace ATM_Simulator
             {
                 case ("checkingBalance"):
 
+                    // take the user back from the checking balance screen to options menu
                     Option1Label.Visible = true;
                     Option2Label.Visible = true;
                     Option3Label.Visible = true;
@@ -385,6 +412,7 @@ namespace ATM_Simulator
             {
                 case ("withdrawing"):
 
+                    // take user to screen to input custom amount
                     Option1Label.Visible = false;
                     Option2Label.Visible = false;
                     Option3Label.Visible = false;
@@ -478,10 +506,8 @@ namespace ATM_Simulator
                 Option6Label.Visible = false;
                 Option7Label.Visible = false;
                 Option8Label.Visible = false;
-                
-                // another timer to simulate calcultations taking place
 
-
+                // another timer to simulate calculations taking place
                 System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
                 timer1.Interval = 2000;
                 timer1.Tick += (object sender, EventArgs e) =>
@@ -499,11 +525,12 @@ namespace ATM_Simulator
                     bank.currentUser.balance = currentBalance;
 
                     // display the users new balance
-                    BalanceLabel.Text = "Your new balance is: �" + bank.currentUser.balance;
+                    BalanceLabel.Text = "Your new balance is: £" + bank.currentUser.balance;
                     BalanceLabel.Location = new Point(80, 145);
                     BalanceLabel.Visible = true;
                     timer1.Stop();
 
+                    // another timer to allow new balance message to stay on screen
                     System.Windows.Forms.Timer timer2 = new System.Windows.Forms.Timer();
                     timer2.Interval = 2000;
                     timer2.Tick += (object sender, EventArgs e) =>
@@ -530,36 +557,53 @@ namespace ATM_Simulator
             }
         }
 
+        //method to "dispense" cash from atm by moving image
         private void DispenseCash()
         {
-            int targetY = MoneyImage.Location.Y + 120; // the target Y position after moving down by 100 pixels
-            int steps = 40; // the number of steps to take to reach the target position
-            int duration = 2000; // the duration in milliseconds of the animation
 
+            // make the money image visible and return it to starting location if not there already
+            MoneyImage.Visible = true;
+            MoneyImage.Location = new Point(742, 263);
+
+            // set the target location, how many steps for it to be done in, and duration for the animation
+            int targetY = MoneyImage.Location.Y + 120;
+            int steps = 40;
+            int duration = 2000;
+
+            // variable for the starting position of the image, and how far to move per step
             int startY = MoneyImage.Location.Y;
             int deltaY = (targetY - startY) / steps;
 
+            // create a timer to update the image location for each step
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
             timer.Interval = duration / steps;
             int stepCount = 0;
             timer.Tick += (object sender, EventArgs e) =>
             {
+
+                // calculate the new Y position for the image and set the new location to that
                 int newY = startY + (deltaY * stepCount);
                 MoneyImage.Location = new Point(MoneyImage.Location.X, newY);
 
+                // increment the step count
                 stepCount++;
+
+                // stop the timer when all steps have been done
                 if (stepCount >= steps)
                 {
                     timer.Stop();
-                    // Start a second timer to hide the image after a delay
-                    System.Windows.Forms.Timer hideTimer = new System.Windows.Forms.Timer();
-                    hideTimer.Interval = 2000;
-                    hideTimer.Tick += (object s, EventArgs evt) =>
+
+                    // start a second timer to hide the image after a delay
+                    System.Windows.Forms.Timer timer2 = new System.Windows.Forms.Timer();
+                    timer2.Interval = 2000;
+                    timer2.Tick += (object s, EventArgs evt) =>
                     {
+
+                        // hide the money image
                         MoneyImage.Visible = false;
-                        hideTimer.Stop();
+                        timer2.Stop();
                     };
-                    hideTimer.Start();
+                    timer2.Start();
                 }
             };
             timer.Start();
