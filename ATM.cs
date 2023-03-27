@@ -11,13 +11,21 @@ namespace ATM_Simulator
         string currentState;
         int accntNumber;
         int withdrawAmount;
+        bool dataCon;
 
-        public ATM(Bank bank)
+
+        public ATM(Bank bank, bool dataCon)
         {
             InitializeComponent();
-
+            this.dataCon = dataCon;
             this.bank = bank;
             currentState = "accountLogin";
+
+            Thread Atm0 = new Thread(() => Application.Run(new ATM(bank, dataCon)));
+            Thread Atm1 = new Thread(() => Application.Run(new ATM(bank, dataCon)));
+
+            Atm0.Start();
+            Atm1.Start();
         }
 
         // method to allow only numbers to be typed
@@ -460,6 +468,8 @@ namespace ATM_Simulator
                 Option7Label.Visible = false;
                 Option8Label.Visible = false;
 
+
+                Thread.Sleep(1000);
                 bank.currentUser.balance -= withdrawAmount;
 
                 System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
@@ -528,6 +538,11 @@ namespace ATM_Simulator
                 }
             };
             timer.Start();
+        }
+
+        private void ATM_Load(object sender, EventArgs e)
+        {
+            
         }
 
 

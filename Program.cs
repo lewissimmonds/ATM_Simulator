@@ -15,17 +15,14 @@ namespace ATM_Simulator
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
+            //Create bank object
             Bank bank = new Bank();
 
-
-            Thread Atm0 = new Thread(() => Application.Run(new ATM(bank)));
-            Thread Atm1 = new Thread(() => Application.Run(new ATM(bank)));
+            //Create central computer thread
             Thread CenComp = new Thread(() => Application.Run(new CentralBankForm(bank))); // REPLACE WITH CENTRAL COMPUTER APP!!!!!!!
 
-            // Start the threads
-            Atm0.Start();
-            //Atm1.Start();
-            //CenComp.Start();
+            //Start the thread
+            CenComp.Start();
 
             
         }
