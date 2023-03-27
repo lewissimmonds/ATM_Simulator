@@ -772,7 +772,14 @@ namespace ATM_Simulator
 
         public void LogMessage(string message)
         {
-            textBox.AppendText(message + Environment.NewLine);
+            if (textBox.InvokeRequired)
+            {
+                textBox.Invoke(new Action<string>(LogMessage), message);
+            }
+            else
+            {
+                textBox.AppendText(message + Environment.NewLine);
+            }
         }
 
     }

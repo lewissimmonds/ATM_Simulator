@@ -41,7 +41,9 @@
             // AccountDetailsTable
             // 
             this.AccountDetailsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.AccountDetailsTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(0)))), ((int)(((byte)(68)))));
             this.AccountDetailsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.AccountDetailsTable.GridColor = System.Drawing.Color.Black;
             this.AccountDetailsTable.Location = new System.Drawing.Point(70, 86);
             this.AccountDetailsTable.Name = "AccountDetailsTable";
             this.AccountDetailsTable.RowTemplate.Height = 25;
@@ -69,6 +71,7 @@
             // TitleLabel
             // 
             this.TitleLabel.AutoSize = true;
+            this.TitleLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(0)))), ((int)(((byte)(68)))));
             this.TitleLabel.Location = new System.Drawing.Point(322, 37);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(57, 15);
@@ -100,7 +103,9 @@
             // 
             // LogTextBox
             // 
+            this.LogTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(0)))), ((int)(((byte)(68)))));
             this.LogTextBox.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.LogTextBox.ForeColor = System.Drawing.Color.White;
             this.LogTextBox.Location = new System.Drawing.Point(70, 341);
             this.LogTextBox.Multiline = true;
             this.LogTextBox.Name = "LogTextBox";
@@ -113,6 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(684, 561);
             this.Controls.Add(this.LogTextBox);
             this.Controls.Add(this.btnShowATMs);
@@ -122,7 +128,7 @@
             this.Controls.Add(this.BankTitle);
             this.Controls.Add(this.AccountDetailsTable);
             this.Name = "CentralBankForm";
-            this.Text = "Form1";
+            this.Text = "Dundee Computing Central Bank";
             this.Load += new System.EventHandler(this.CentralBankForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.AccountDetailsTable)).EndInit();
             this.ResumeLayout(false);
