@@ -39,7 +39,7 @@ namespace ATM_Simulator
 
             //Centre details table
             int cornerW = (this.ClientSize.Width - AccountDetailsTable.Width) / 2;
-            int cornerH = ((this.ClientSize.Height - AccountDetailsTable.Height) / 2)-100;
+            int cornerH = ((this.ClientSize.Height - AccountDetailsTable.Height) / 2) - 100;
             AccountDetailsTable.Location = new Point(cornerW, cornerH);
 
 
@@ -48,7 +48,7 @@ namespace ATM_Simulator
             TitleLabel.Font = new Font("Arial", 24, FontStyle.Bold);
 
             //Centre title
-            TitleLabel.Location = new Point(this.ClientSize.Width/2-(TitleLabel.Width/2), 10);
+            TitleLabel.Location = new Point(this.ClientSize.Width / 2 - (TitleLabel.Width / 2), 10);
 
 
             //Centre button
@@ -94,16 +94,18 @@ namespace ATM_Simulator
 
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxDataConcurrency_Click(object sender, EventArgs e)
         {
-            if (dataCon == false)
+
+            if (checkBoxDataConcurrency.Checked)
             {
                 dataCon = true;
             }
             else
             {
-                dataCon= false;
+                dataCon = false;
             }
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -121,5 +123,7 @@ namespace ATM_Simulator
             Atm0.Start();
             Atm1.Start();
         }
+
+ 
     }
 }

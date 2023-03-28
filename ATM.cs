@@ -544,45 +544,37 @@ namespace ATM_Simulator
                     if (!dataCon)
                     {
                         int currentBalance;
+
+                        // try block to catch any exceptions that may occur due to the dealing of the threads
                         try
                         {
-                            // Wait for other threads to release the semaphore and acquire it for this thread
+                            // wait for other threads to release the semaphore and acquire it for this thread
                             userSemaphore.Wait();
 
-                            // Get the current balance and wait
+                            // get the current balance and wait
                             currentBalance = bank.currentUser.balance;
                             Thread.Sleep(500);
 
-                            // Calculate the new balance and wait again
+                            // withdraw the amount from the local current balance and wait again
                             currentBalance = currentBalance - withdrawAmount;
                             Thread.Sleep(500);
 
-                            // Update the balance held within the bank system with the new balance
+                            // update the balance held within the bank system with the new balance
                             bank.currentUser.balance = currentBalance;
                         }
+
+                        // finally, make sure the semaphore is released
                         finally
                         {
-                            // Release the semaphore when we're done
                             userSemaphore.Release();
                         }
                     }
                     else
                     {
-                        try
-                        {
-                            // Wait for other threads to release the semaphore and acquire it for this thread
-                            userSemaphore.Wait();
+                        // simply withdraw the amount from the balance and race conditions should occur
+                        bank.currentUser.balance -= withdrawAmount;
 
-                            // Update the balance held within the bank system with the new balance
-                            bank.currentUser.balance -= withdrawAmount;
-                        }
-                        finally
-                        {
-                            // Release the semaphore when we're done
-                            userSemaphore.Release();
-                        }
                     }
-
                     // display the users new balance
                     BalanceLabel.Text = "Your new balance is: £" + bank.currentUser.balance;
                     BalanceLabel.Location = new Point(80, 145);
