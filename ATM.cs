@@ -25,7 +25,6 @@ namespace ATM_Simulator
         bool dataCon;
         int errorCount;
 
-
         // constructor for atm object
         public ATM(Bank bank, bool dataCon, TextBox textBox)
         {
