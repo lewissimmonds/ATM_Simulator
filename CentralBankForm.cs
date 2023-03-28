@@ -21,6 +21,7 @@ namespace ATM_Simulator
             this.bank = bank;
             InitializeComponent();
 
+            //Ints for window heightt and width
             int windowWidth = 700;
             int windowHeight = 600;
 
@@ -96,7 +97,7 @@ namespace ATM_Simulator
 
         private void checkBoxDataConcurrency_Click(object sender, EventArgs e)
         {
-
+            //Checks if box is checked, if checked data Concurrency is activated.
             if (checkBoxDataConcurrency.Checked)
             {
                 dataCon = true;
@@ -117,9 +118,11 @@ namespace ATM_Simulator
         {
             LogMessage("[INFO] Starting ATMs");
 
+            //Creates threads for ATMs
             Thread Atm0 = new Thread(() => Application.Run(new ATM(bank, dataCon, LogTextBox)));
             Thread Atm1 = new Thread(() => Application.Run(new ATM(bank, dataCon, LogTextBox)));
 
+            //Starts the ATM threads
             Atm0.Start();
             Atm1.Start();
         }

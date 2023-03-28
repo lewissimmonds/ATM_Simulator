@@ -68,8 +68,10 @@ namespace ATM_Simulator
         //Method to check pin is 4 digits long and account is 6 digits long
         public bool LengthCheck(int accNum, int pin)
         {
+            //Converts to string then checks the amount of digits entered, checks is equal to 6
             if (accNum.ToString().Length == 6)
             {
+                //Converts to string then checks the amount of digits entered, checks is equal to 4
                 if (pin.ToString().Length == 4)
                 {
                     return true;

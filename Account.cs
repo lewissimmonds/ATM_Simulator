@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace ATM_Simulator
 {
+
+    //Class handles storing of all the account data
     public class Account
     {
         public int accountNum { get; set; }
