@@ -52,6 +52,7 @@
             AccountDetailsTable.RowTemplate.Height = 25;
             AccountDetailsTable.Size = new Size(535, 207);
             AccountDetailsTable.TabIndex = 0;
+            AccountDetailsTable.TabStop = false;
             AccountDetailsTable.CellContentClick += dataGridView1_CellContentClick;
             // 
             // BankTitle

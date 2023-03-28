@@ -521,11 +521,11 @@ namespace ATM_Simulator
 
                             // get the current balance and wait
                             currentBalance = bank.currentUser.balance;
-                            Thread.Sleep(500);
+                            Thread.Sleep(2000);
 
                             // withdraw the amount from the local current balance and wait again
                             currentBalance = currentBalance - withdrawAmount;
-                            Thread.Sleep(500);
+                            Thread.Sleep(2000);
 
                             // update the balance held within the bank system with the new balance
                             bank.currentUser.balance = currentBalance;
