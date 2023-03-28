@@ -124,6 +124,6 @@ namespace ATM_Simulator
             Atm1.Start();
         }
 
- 
+
     }
 }

@@ -9,14 +9,15 @@ namespace ATM_Simulator
     {
 
         // declare variables
-        private CentralBankForm _centralBankForm;
         private Bank bank;
         private TextBox textBox;
+        private SemaphoreSlim userSemaphore;
         string currentState;
         int accntNumber;
         int withdrawAmount;
         bool dataCon;
-        private SemaphoreSlim userSemaphore;
+        int errorCount;
+
 
         // constructor for atm object
         public ATM(Bank bank, bool dataCon, TextBox textBox)
@@ -30,6 +31,7 @@ namespace ATM_Simulator
             // current state is set to account login for the first screen
             // user is presented with
             currentState = "accountLogin";
+            errorCount = 0;
 
         }
 
@@ -59,8 +61,9 @@ namespace ATM_Simulator
                     {
 
                         // have a popup to signify error
-                        MessageBox.Show("ERROR: please enter a 6-digit account number");
-                        LogMessage("[INFO] Failed login");
+                        MessageBox.Show("ERROR: Please enter a 6-digit account number");
+                        LogMessage("[ERROR] Failed login");
+                        OnError();
                         ScreenTextBox.Text = "";
                         ScreenTextBox.Focus();
                         return;
@@ -107,8 +110,9 @@ namespace ATM_Simulator
                     // error handling for if user enters a pin number that isn't 4-digits
                     if (ScreenTextBox.Text.Length != 4)
                     {
-                        MessageBox.Show("Please enter a 4-digit pin number");
-                        LogMessage("[INFO] Failed login");
+                        MessageBox.Show("ERROR: Please enter a 4-digit pin number");
+                        LogMessage("[ERROR] Failed login");
+                        OnError();
                         ScreenTextBox.Text = "";
                         ScreenTextBox.Focus();
                         return;
@@ -124,8 +128,11 @@ namespace ATM_Simulator
                         // display to the user the options
                         ScreenOutputTextBox.Text = "Please select the option you'd like to do";
                         Option1Label.Visible = true;
+                        Option1Label.Text = "Withdraw";
                         Option2Label.Visible = true;
+                        Option2Label.Text = "Check Balance";
                         Option3Label.Visible = true;
+                        Option3Label.Text = "Return Card";
                         ScreenTextBox.Visible = false;
                         LogMessage("[INFO] Successful login");
                         currentState = "loggedIn";
@@ -479,6 +486,10 @@ namespace ATM_Simulator
             {
 
                 // display an error to signify this
+                WithdrawWarningLabel.Location = new Point(67, 114);
+                WithdrawWarningLabel.Text = "The amount you are trying\r\nto withdraw is greater than\r\nyour balance\r\n";
+                LogMessage("[ERROR] Withdrawal amount is greater than balance");
+                OnError();
                 WithdrawWarningLabel.Visible = true;
                 ScreenTextBox.Visible = false;
                 Option1Label.Visible = false;
@@ -716,6 +727,19 @@ namespace ATM_Simulator
         // method to simulate card being removed from atm
         private void RemoveCard()
         {
+
+            ScreenOutputTextBox.Visible = false;
+            Option1Label.Visible = false;
+            Option2Label.Visible = false;
+            Option3Label.Visible = false;
+            Option4Label.Visible = false;
+            Option5Label.Visible = false;
+            Option6Label.Visible = false;
+            Option7Label.Visible = false;
+            Option8Label.Visible = false;
+
+
+
             // make the bank card image visible and return it to starting location if not there already
             BankCard.Visible = true;
             BankCard.Location = new Point(796, -84);
@@ -754,6 +778,22 @@ namespace ATM_Simulator
                     {
                         // hide the bank card image
                         BankCard.Visible = false;
+                        ScreenOutputTextBox.Visible = true;
+                        ScreenOutputTextBox.Text = "Please enter your account number";
+                        currentState = "accountLogin";
+                        ScreenTextBox.Visible = true;
+                        ScreenTextBox.Text = "";
+                        ScreenTextBox.Focus();
+                        Option1Label.Visible = false;
+                        Option2Label.Visible = false;
+                        Option3Label.Visible = false;
+                        Option4Label.Visible = false;
+                        Option5Label.Visible = false;
+                        Option6Label.Visible = false;
+                        Option7Label.Visible = false;
+                        Option8Label.Visible = false;
+
+
                         timer2.Stop();
                     };
                     timer2.Start();
@@ -772,6 +812,45 @@ namespace ATM_Simulator
             {
                 textBox.AppendText(message + Environment.NewLine);
             }
+        }
+
+        // method to increment the error count
+        private void IncrementErrorCount()
+        {
+            errorCount++;
+        }
+
+        // method to check if the error count has reached the max allowed
+        private void CheckErrorCount()
+        {
+            int maxErrors = 3;
+            if (errorCount > maxErrors)
+            {
+                // Reject the card
+                WithdrawWarningLabel.Visible = true;
+                WithdrawWarningLabel.Location = new Point(60, 114);
+                WithdrawWarningLabel.Text = "Too many errors accumulated";
+
+                System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+                timer.Interval = 2000;
+                timer.Tick += (object s, EventArgs evt) =>
+                {
+
+                    WithdrawWarningLabel.Visible = false;
+                    RemoveCard();
+                    errorCount = 0;
+                    timer.Stop();
+                };
+                timer.Start();
+
+            }
+        }
+
+        // method to deal with error logic whenever an error occurs
+        private void OnError()
+        {
+            IncrementErrorCount();
+            CheckErrorCount();
         }
 
     }

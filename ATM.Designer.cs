@@ -635,7 +635,7 @@
 
         private Panel ATMScreenPanel;
         private Button Num1Button;
-        private Button CancelButton;
+        private new Button CancelButton;
         private Button Num2Button;
         private Button Num3Button;
         private Button Num4Button;

@@ -46,6 +46,7 @@
             AccountDetailsTable.GridColor = Color.Black;
             AccountDetailsTable.Location = new Point(70, 86);
             AccountDetailsTable.Name = "AccountDetailsTable";
+            AccountDetailsTable.RowHeadersVisible = false;
             AccountDetailsTable.RowTemplate.Height = 25;
             AccountDetailsTable.Size = new Size(535, 207);
             AccountDetailsTable.TabIndex = 0;
@@ -141,7 +142,6 @@
         private Label BankTitle;
         private Label label1;
         private Label TitleLabel;
-        private CheckBox checkBox1;
         private Button btnShowATMs;
         private CheckBox checkBoxDataConcurrency;
         private TextBox LogTextBox;
