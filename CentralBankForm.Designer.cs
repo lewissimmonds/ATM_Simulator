@@ -47,6 +47,7 @@
             AccountDetailsTable.GridColor = Color.Black;
             AccountDetailsTable.Location = new Point(70, 86);
             AccountDetailsTable.Name = "AccountDetailsTable";
+            AccountDetailsTable.ReadOnly = true;
             AccountDetailsTable.RowHeadersVisible = false;
             AccountDetailsTable.RowTemplate.Height = 25;
             AccountDetailsTable.Size = new Size(535, 207);
