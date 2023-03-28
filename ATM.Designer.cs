@@ -1,4 +1,11 @@
-﻿namespace ATM_Simulator
+﻿
+/*
+    Lewis Simmonds, 190008397
+    Finnbar Home, 2481383
+    Ben Sloan, 2455344
+*/
+
+namespace ATM_Simulator
 {
     partial class ATM
     {
