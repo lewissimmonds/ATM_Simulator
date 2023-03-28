@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CentralBankForm));
             AccountDetailsTable = new DataGridView();
             BankTitle = new Label();
             label1 = new Label();
@@ -128,6 +129,7 @@
             Controls.Add(label1);
             Controls.Add(BankTitle);
             Controls.Add(AccountDetailsTable);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CentralBankForm";
             Text = "Dundee Computing Central Bank";
             Load += CentralBankForm_Load;
