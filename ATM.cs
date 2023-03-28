@@ -202,14 +202,7 @@ namespace ATM_Simulator
                     Option1Label.Text = "�500";
                     Option2Label.Text = "�250";
                     Option3Label.Text = "�100";
-                    Option1Label.Visible = true;
-                    Option2Label.Visible = true;
-                    Option3Label.Visible = true;
-                    Option4Label.Visible = true;
-                    Option5Label.Visible = true;
-                    Option6Label.Visible = true;
-                    Option7Label.Visible = true;
-                    Option8Label.Visible = true;
+                    ShowOptionLabels();
                     currentState = "withdrawing";
 
                     break;
@@ -355,14 +348,7 @@ namespace ATM_Simulator
                 case ("loggedIn"):
 
                     // "log the user out" by hiding all visible elements on screen
-                    Option1Label.Visible = false;
-                    Option2Label.Visible = false;
-                    Option3Label.Visible = false;
-                    Option4Label.Visible = false;
-                    Option5Label.Visible = false;
-                    Option6Label.Visible = false;
-                    Option7Label.Visible = false;
-                    Option8Label.Visible = false;
+                    HideOptionLabels();
                     ScreenOutputTextBox.Visible = false;
                     BalanceLabel.Location = new Point(110, 145);
                     BalanceLabel.Text = "Have a nice day!";
@@ -448,14 +434,7 @@ namespace ATM_Simulator
                 case ("withdrawing"):
 
                     // take user to screen to input custom amount
-                    Option1Label.Visible = false;
-                    Option2Label.Visible = false;
-                    Option3Label.Visible = false;
-                    Option4Label.Visible = false;
-                    Option5Label.Visible = false;
-                    Option6Label.Visible = false;
-                    Option7Label.Visible = false;
-                    Option8Label.Visible = false;
+                    HideOptionLabels();
                     ScreenOutputTextBox.Text = "Please enter the amount you'd like to withdraw";
                     ScreenOutputTextBox.Font = new Font(ScreenOutputTextBox.Font.FontFamily, 10);
                     ScreenTextBox.Visible = true;
@@ -492,15 +471,7 @@ namespace ATM_Simulator
                 OnError();
                 WithdrawWarningLabel.Visible = true;
                 ScreenTextBox.Visible = false;
-                Option1Label.Visible = false;
-                Option2Label.Visible = false;
-                Option3Label.Visible = false;
-                Option4Label.Visible = false;
-                Option5Label.Visible = false;
-                Option5Label.Visible = false;
-                Option6Label.Visible = false;
-                Option7Label.Visible = false;
-                Option8Label.Visible = false;
+                HideOptionLabels();
                 ScreenOutputTextBox.Visible = false;
 
                 // using a timer to pause execution of the next lines of code,
@@ -510,15 +481,7 @@ namespace ATM_Simulator
                 timer.Tick += (object sender, EventArgs e) =>
                 {
                     WithdrawWarningLabel.Visible = false;
-                    Option1Label.Visible = true;
-                    Option2Label.Visible = true;
-                    Option3Label.Visible = true;
-                    Option4Label.Visible = true;
-                    Option5Label.Visible = true;
-                    Option5Label.Visible = true;
-                    Option6Label.Visible = true;
-                    Option7Label.Visible = true;
-                    Option8Label.Visible = true;
+                    ShowOptionLabels();
                     ScreenOutputTextBox.Visible = true;
                     ScreenOutputTextBox.Text = "How much would you like to withdraw?";
                     ScreenOutputTextBox.Font = new Font(ScreenOutputTextBox.Font.FontFamily, 12);
@@ -535,16 +498,10 @@ namespace ATM_Simulator
                 BalanceLabel.Visible = true;
                 BalanceLabel.Location = new Point(100, 145);
                 BalanceLabel.Text = "Dispensing cash...";
+                LogMessage("[INFO] £" + withdrawAmount + " withdrawn");
                 DispenseCash();
                 ScreenOutputTextBox.Visible = false;
-                Option1Label.Visible = false;
-                Option2Label.Visible = false;
-                Option3Label.Visible = false;
-                Option4Label.Visible = false;
-                Option5Label.Visible = false;
-                Option6Label.Visible = false;
-                Option7Label.Visible = false;
-                Option8Label.Visible = false;
+                HideOptionLabels();
 
                 // another timer to simulate calculations taking place
                 System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
@@ -617,8 +574,6 @@ namespace ATM_Simulator
                 };
                 timer1.Start();
             }
-
-            LogMessage("[INFO] £" + withdrawAmount + " withdrawn");
 
         }
 
@@ -729,14 +684,7 @@ namespace ATM_Simulator
         {
 
             ScreenOutputTextBox.Visible = false;
-            Option1Label.Visible = false;
-            Option2Label.Visible = false;
-            Option3Label.Visible = false;
-            Option4Label.Visible = false;
-            Option5Label.Visible = false;
-            Option6Label.Visible = false;
-            Option7Label.Visible = false;
-            Option8Label.Visible = false;
+            HideOptionLabels();
 
 
 
@@ -784,14 +732,7 @@ namespace ATM_Simulator
                         ScreenTextBox.Visible = true;
                         ScreenTextBox.Text = "";
                         ScreenTextBox.Focus();
-                        Option1Label.Visible = false;
-                        Option2Label.Visible = false;
-                        Option3Label.Visible = false;
-                        Option4Label.Visible = false;
-                        Option5Label.Visible = false;
-                        Option6Label.Visible = false;
-                        Option7Label.Visible = false;
-                        Option8Label.Visible = false;
+                        HideOptionLabels();
 
 
                         timer2.Stop();
@@ -851,6 +792,34 @@ namespace ATM_Simulator
         {
             IncrementErrorCount();
             CheckErrorCount();
+        }
+
+        private void HideOptionLabels()
+        {
+
+            Option1Label.Visible = false;
+            Option2Label.Visible = false;
+            Option3Label.Visible = false;
+            Option4Label.Visible = false;
+            Option5Label.Visible = false;
+            Option6Label.Visible = false;
+            Option7Label.Visible = false;
+            Option8Label.Visible = false;
+
+        }
+
+        private void ShowOptionLabels()
+        {
+
+            Option1Label.Visible = true;
+            Option2Label.Visible = true;
+            Option3Label.Visible = true;
+            Option4Label.Visible = true;
+            Option5Label.Visible = true;
+            Option6Label.Visible = true;
+            Option7Label.Visible = true;
+            Option8Label.Visible = true;
+
         }
 
     }
